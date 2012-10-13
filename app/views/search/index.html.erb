@@ -1,0 +1,9 @@
+<table>
+	<% @arr.each do |t| %>
+	<tr>
+		<th>
+			<%=link_to t[1], '/topics/'+t[0].to_s %>
+		</th>
+	</tr>
+	<% end %>
+</table>

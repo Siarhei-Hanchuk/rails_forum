@@ -1,0 +1,8 @@
+<%= form_tag('/search/index') do%>
+  	<%= radio_button :gender, :contactmethod, 'topics', :checked => true %> 
+  	<%= label :contactmethod_email, 'Topics' %>
+  	<%= radio_button :gender, :contactmethod, 'posts', :checked => false %>
+  	<%= label :contactmethod_sms, 'Posts' %>
+	<%= text_field_tag :text, params[:text] %>
+	<%= submit_tag "Search" %>
+<% end %>

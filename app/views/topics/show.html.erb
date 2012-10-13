@@ -1,0 +1,65 @@
+<div id='page'>	
+	<b>Title:</b>
+	<%= @topic.title %>, <%= link_to 'Edit', edit_topic_path(@topic) %>
+	<div class='desc'>
+		<b>Part:</b>
+		<%= link_to @topic.part.title, '/parts/'+@topic.part_id.to_s %>,
+		<b>Author:</b>
+		<%= @topic.user.login %>
+	</div>
+
+	<table id='table'>
+		<tr>
+			<th></th>
+			<th></th>
+		</tr>
+
+		<% @topic.posts.each do |post| %>
+		<tr>
+			<td class='msg_user'>
+				<b><%= post.user.login %></b><br>
+				<%= 'Admin' if post.user.status==1 %>
+				<%= 'User'  if post.user.status==0 %>
+				<%= image_tag post.user.avatar, :width=>100%>
+				Posts: <%= post.user.posts.count %><br>
+				Date: <%= to_date post.user.created_at %>
+			</div></td>
+			<td class='msg_body'>
+				<div class='msg_body_u'>
+					<%=post.body%><br>
+				</div>
+				<div class='msg_body_d'>
+					Posted at <%= post.created_at.to_datetime %>
+					<%= 'Edited at '+post.updated_at.to_datetime if post.created_at.to_datetime != post.updated_at.to_datetime%>
+					<%= link_to 'Edit', edit_post_path(post) %>,
+					<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+				</div>
+			</div></td>		
+		</tr>
+		<% end %>
+	</table>
+
+	<button id='b_b'>b</button>
+	<% @post=Post.new %>
+	<%= form_for(@post) do |f| %>
+	<% if @post.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+		<ul>
+			<% @post.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+	<div class="field">
+		<i><%= f.label :body %></i><br />
+		<%= f.text_area :body, :cols => 60, :rows => 10, :class => 'app_input'%>
+	</div>
+	<%= f.hidden_field :topic_id, :value=>@topic.id %>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+	<% end %>
+</div>

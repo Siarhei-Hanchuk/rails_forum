@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+Your profile, <%=@user.login%>:<br>
+Email:<%=@user.email%><br>
+Avatar:<br>
+<%=image_tag @user.avatar.url, :width=>100 %>
+<br>
+<%= link_to 'Edit', edit_user_path(@user) %>

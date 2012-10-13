@@ -1,0 +1,28 @@
+<div id='page'>
+  <h1>Forum parts</h1>
+
+  <table id='table'>
+    <tr>
+      <th>Part name</th>
+      <%if is_admin%>
+      <th></th>
+      <th></th>
+      <% end %>
+    </tr>
+
+    <% @parts.each do |part| %>
+    <tr>
+      <td><%= link_to part.title, part %><br><span class='desc'><%= part.desc %></span></td>
+      <%if is_admin%>
+      <td><%= link_to 'Edit', edit_part_path(part) %></td>
+      <td><%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+
+  <br />
+  <%if is_admin%>
+  <%= link_to 'New Part', new_part_path %>
+  <%end%>
+</div>

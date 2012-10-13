@@ -1,0 +1,101 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+ body2{
+ 	background-color: #19A6A3;
+ }
+
+ #head{
+ 	width: 100%;
+ 	height: 120px;
+ 	background-color: #19A6D3;
+ }
+
+ #head_lc{
+ 	width: 80%;
+ 	float:left;
+ 	text-align: center;
+ 	font-size: 30px;
+ }
+
+ #head_u{
+ 	width: 100%;
+ 	height: 80px;
+ 	background-color: #49ABC4;
+ }
+
+ #head_d{
+ 	width: 100%;
+ 	height: 40px;
+ 	background-color: #3396A9;
+ }
+
+ #head_r{
+ 	width: 20%;
+ 	height: inherit;
+ 	float:left;
+ 	background-color: #5452DF;
+ 	color: white;
+ }
+
+ #head_r a{
+ 	color: white;
+ }
+
+ .desc{
+ 	font-size: 10px;
+ 	color: gray;
+ }
+
+ .menu{
+ 	float: left;
+ 	background-color: #0FB888;
+ 	height: 34px;
+ 	margin: 3px;
+ 	border-radius:6px; 
+ 	vertical-align: middle;
+ }
+
+ .menu a:link{
+ 	text-decoration: none;
+ 	color: #336699; 
+ }
+
+ .menu a:visited	{
+ 	text-decoration: none;
+ 	color: #336699; 
+ }
+
+ .menu a:active{
+ 	text-decoration: none;
+ 	color: #336699; 
+ }
+
+ .menu a:hover{
+ 	text-decoration: none;
+ 	color: #336699; 
+ }
+
+ .leftimg {
+ 	float:left; /* Выравнивание по левому краю */
+ 	margin: 7px 7px 7px 0; /* Отступы вокруг картинки */
+ }
+
+ .msg{
+ 	float: left;
+ }
+
+ .msg2_body{
+ 	float: left;
+ }
