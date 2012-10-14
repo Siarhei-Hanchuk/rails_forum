@@ -47,7 +47,7 @@ gem 'bcrypt-ruby'
 
 gem 'carrierwave'
 
-gem 'mini_magick'
+gem 'rmagick'
 
 gem 'will_paginate', '>= 3.0.pre'
 
