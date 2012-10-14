@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :avatar_file_name
 
+  validates :login, :uniqueness => true
   validates :pass, :confirmation => true
   validates :login, :length=> {:minimum=>3, :maximun=>12}
   validates :login, :pass, :status, :presence => true
