@@ -2,9 +2,9 @@ Your profile, <%=@user.login%>:<br>
 Email:<%=@user.email%><br> 
 
 You have <%= @user.posts.count %> posts and <%= @user.topics.count %> topics.<br>
-Registration date: <%= @user.created_at.to_datetime.to_s.scan(/[\d-]+/)[0] %>
+Registration date: <%= @user.created_at.to_datetime.to_s.scan(/[\d-]+/)[0] %>:<br>
 
 Avatar:<br>
-
+<%=image_tag @user.avatar.url, :width=>100 %>
 <br>
 <%= link_to 'Edit profile', edit_user_path(@user) %>
