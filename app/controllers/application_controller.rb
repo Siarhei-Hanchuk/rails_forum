@@ -12,12 +12,16 @@ class ApplicationController < ActionController::Base
 
 	def is_admin
 		if session[:user_id]
-			unless User.find(session[:user_id]).login=='root'
+			unless User.find(session[:user_id]).is_admin
 				redirect_to '/login', :notice => "You are not root"
 			end
 		end
 		#else
 		#	redirect_to '/login', :notice => "Please log in"
 		#end
+	end
+
+	def isadmin
+		true if session[:user_id] && User.find(session[:user_id]).is_admin
 	end
 end

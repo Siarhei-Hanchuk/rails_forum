@@ -15,15 +15,15 @@
 			</div>
 			<div id='head_d'>
 				<div class='menu'>
-					<%= link_to 'Main page', '/'%>
+					<%= link_to ' Main page ', '/'%>
 				</div>
 				<% if logged %>
 				<div class='menu'>
-					<%= link_to 'User profile', '/users/'+session[:user_id].to_s%>
+					<%= link_to ' User profile ', '/users/'+session[:user_id].to_s%>
 				</div>
 				<% end %>
 				<div class='menu'>
-					item3
+					 item3 
 				</div>
 				<div style="float:right">
 					<%=render :partial=>'search/form'%>
@@ -35,7 +35,9 @@
 		</div>
 	</div>
 	<p id="notice"><%= notice %></p>
+	<div id='page'>
 	<%= yield %>
+</div	>
 
 </body>
 </html>

@@ -1,9 +1,19 @@
-<table>
-	<% @arr.each do |t| %>
+<% if @type=='topics'%>
+<table id='table'>
 	<tr>
-		<th>
-			<%=link_to t[1], '/topics/'+t[0].to_s %>
-		</th>
+		<th>Title</th>
+		<th>Author</th>
+		<th>Post count</th>
+	</tr>
+
+	<% @arr.each do |topic| %>
+	<tr>
+		<td><%=link_to topic[1].title, '/topics/'+topic[0].to_s %></td>
+		<td><%= topic[1].user.login %></td>
+		<td><%= topic[1].posts.count %></td>
 	</tr>
 	<% end %>
 </table>
+<% else %>
+Search by posts not support
+<% end %>

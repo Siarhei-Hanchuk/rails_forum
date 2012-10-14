@@ -1,5 +1,8 @@
 module ApplicationHelper
-	def is_admin
+	def isadmin
+		if !User.exists?(session[:user_id])
+			session[:user_id]=nil
+		end
 		true if session[:user_id] && User.find(session[:user_id]).is_admin
 	end
 

@@ -5,7 +5,7 @@ class SearchController < ApplicationController
   	@arr={}
   	if @type=='topics'
   		Topic.find(:all).each { |e|
-  			@arr[e.id]=e.title if e.title.scan(@text)!=[]
+  			@arr[e.id]=e if e.title.scan(@text)!=[]
   		}
   	end
 #  	if @type=='posts'

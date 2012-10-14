@@ -30,7 +30,7 @@
 				</div>
 				<div class='msg_body_d'>
 					Posted at <%= post.created_at.to_datetime %>
-					<%= 'Edited at '+post.updated_at.to_datetime if post.created_at.to_datetime != post.updated_at.to_datetime%>
+					<%= 'Edited at '+post.updated_at.to_datetime.to_s if post.created_at.to_datetime != post.updated_at.to_datetime%>
 					<%= link_to 'Edit', edit_post_path(post) %>,
 					<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
 				</div>

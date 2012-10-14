@@ -12,8 +12,12 @@
  *= require_tree .
  */
 
- body2{
- 	background-color: #19A6A3;
+ body{
+ 	background-color: #19A6D3;
+ }
+
+ #notice{
+ 	text-align: center;
  }
 
  #head{
@@ -64,7 +68,7 @@
  	height: 34px;
  	margin: 3px;
  	border-radius:6px; 
- 	vertical-align: middle;
+ 	font-size: 28px;
  }
 
  .menu a:link{

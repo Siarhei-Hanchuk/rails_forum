@@ -1,0 +1,6 @@
+<%= form_tag('/newpost/index') do%>
+	<%= text_field_tag :title, params[:title], :size => 40 %><br>
+	<%= text_area_tag :body, params[:body], :cols=>60, :rows=>10%><br>
+	<%= hidden_field :part, @ppp %>
+	<%= submit_tag "new topic" %><br>
+<% end %>

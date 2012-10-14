@@ -1,4 +1,6 @@
 Forum3::Application.routes.draw do
+  get "newpost/index"
+
   get "search/index"
 
   get "sessions/new"
@@ -24,6 +26,12 @@ Forum3::Application.routes.draw do
   controller :search do
     post 'search/index' => :index
   end
+
+  controller :newpost do
+    post 'newpost/index' => :index
+  end
+
+  match '/register' => 'users#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

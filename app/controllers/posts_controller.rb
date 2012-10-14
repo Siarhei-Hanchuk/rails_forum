@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  skip_before_filter :is_admin
+
   # GET /posts
   # GET /posts.json
   def index
@@ -35,6 +37,10 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+    if !(isadmin ||session[:user_id]==@post.user_id)
+      redirect_to '/topics/'+@post.topic_id.to_s, notice: "You don't have permission to edit"
+      return nil
+    end
   end
 
   # POST /posts
@@ -60,7 +66,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to '/topics/'+@post.topic_id.to_s, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,11 +79,26 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
+
+    if !(isadmin ||session[:user_id]==@post.user_id)
+      redirect_to '/topics/'+@post.topic_id.to_s, notice: "You don't have permission to delete"
+      return nil
+    end
+
+    if @post.topic.posts.first==@post
+      @n='You can\'t remove firt post, please remove topic'
+      redirect_to '/topics/'+@post.topic_id.to_s, notice: 'You can\'t remove firt post, please remove topic'
+      return nil
+    end
+  
+    #redirect_to '/topics/'+@post.topic_id.to_s, notice: @n if @n
+    #return false;
+
     @topic_id=@post.topic_id
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to '/topics/'+@topic_id.to_s }
+      format.html { redirect_to '/topics/'+@topic_id.to_s}
       format.json { head :no_content }
     end
   end

@@ -1,38 +1,32 @@
-<div id='page'>
-  <p id="notice"><%= notice %></p>
-
 <%= link_to 'New Topic', new_topic_path+'?part='+@part.id.to_s %>
-  <p>
-    <b>Title:</b>
-    <%= @part.title %>
-  </p>
+<p>
+  <b>Title:</b>
+  <%= @part.title %>
+</p>
 
-  <p  class='desc'>
-    <b>Description:</b>
-    <%= @part.desc %>
-  </p>
+<p  class='desc'>
+  <b>Description:</b>
+  <%= @part.desc %>
+</p>
 
-  <table id='table'>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Post count</th>
-      <% if is_admin %>
-      <th>Actions</th>
-      <%end%>
-    </tr>
+<table id='table'>
+  <tr>
+    <th class='table_title'>Title</th>
+    <th>Author</th>
+    <th>Post count</th>
+    <% if isadmin %>
+    <th>Actions</th>
+    <%end%>
+  </tr>
 
-    <% @topics.each do |topic| %>
-    <tr>
-      <td><%= link_to topic.title, topic %></td>
-      <td><%= topic.user.login %></td>
-      <td><%= topic.posts.count %></td>
-      <% if is_admin %>
-      <td><%= link_to 'Edit', edit_topic_path(topic) %>,<%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <%end%>
-    </tr>
-    <% end %>
-  </table>
-
-  
-</div>
+  <% @topics.each do |topic| %>
+  <tr>
+    <td class='table_title'><%= link_to topic.title, topic %></td>
+    <td class='table_add'><%= topic.user.login %></td>
+    <td class='table_add'><%= topic.posts.count %></td>
+    <% if isadmin %>
+    <td class='table_add'><%= link_to 'Edit', edit_topic_path(topic) %>,<%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%end%>
+  </tr>
+  <% end %>
+</table>
