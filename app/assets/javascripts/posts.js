@@ -2,7 +2,7 @@
 //# All this logic will automatically be available in application.js.
 //# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$(document).ready(function() {
-	$("#table tr:nth-child(odd)").css("background-color","#dad0ff");
-	$("#table tr:nth-child(even)").css("background-color","#fefefe");
-});
+//#$(document).ready(function() {
+//#	$("#table tr:nth-child(odd)").css("background-color","#dad0ff");
+//#	$("#table tr:nth-child(even)").css("background-color","#fefefe");
+//#});
