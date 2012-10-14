@@ -22,4 +22,9 @@ module ApplicationHelper
 	def hpe post
 		true if isadmin || post.user_id==session[:user_id];
 	end
+
+	def show_user_login user
+		return user.login if user
+		'USER REMOVED'
+	end
 end

@@ -22,7 +22,7 @@
   <% @topics.each do |topic| %>
   <tr>
     <td class='table_title'><%= link_to topic.title, topic %></td>
-    <td class='table_add'><%= topic.user.login %></td>
+    <td class='table_add'><%= show_user_login topic.user %></td>
     <td class='table_add'><%= topic.posts.count %></td>
     <% if isadmin %>
     <td class='table_add'><%= link_to 'Edit', edit_topic_path(topic) %>,<%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>

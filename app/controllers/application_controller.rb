@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 			u.save
 		end
 	end
-#	def isadmin
-#		true if session[:user_id] && User.find(session[:user_id]).is_admin
-#	end
+	def isadmin
+		true if session[:user_id] && User.find(session[:user_id]).is_admin
+	end
 end
