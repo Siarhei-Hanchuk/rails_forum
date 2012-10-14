@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :authorize#, :only => [:show,:update,:edit]
-  skip_before_filter :is_admin, :except => [:destroy]
+  skip_before_filter :is_admin, :except => [:index, :destroy]
   # GET /users
   # GET /users.json
   def index
