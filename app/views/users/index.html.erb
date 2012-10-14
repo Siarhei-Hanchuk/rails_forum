@@ -2,8 +2,11 @@
 
 <table>
   <tr>
+    <th></th>
     <th>Login</th>
-    <th>Pass</th>
+    <th>Date</th>
+    <th>Last visit</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,8 +14,11 @@
 
 <% @users.each do |user| %>
   <tr>
+    <td><%= image_tag imgurl(user), :width=>30%></td>
     <td><%= user.login %></td>
-    <td><%= user.pass %></td>
+    <td><%= user.created_at %></td>
+    <td><%= user.last_visit %></td>
+    <td><%= link_to 'Ban', '' %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

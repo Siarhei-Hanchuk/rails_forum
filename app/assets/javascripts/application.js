@@ -19,8 +19,8 @@ $(document).ready(function() {
 	$("table tr:nth-child(even)").css("background-color","#fefefe");
 });
 
-//$(document).ready(function() {
-	//$('#b_b').click(function(){
-		//$('.app_input').text($('.app_input').text()+'ololo');
-	//});
-//});
+$(document).ready(function() {
+	$('#b_b').click(function(){
+		$('.app_input').text($('.app_input').text()+'[b]');
+	});
+});

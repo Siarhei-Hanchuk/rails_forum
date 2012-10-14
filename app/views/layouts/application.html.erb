@@ -15,17 +15,25 @@
 			</div>
 			<div id='head_d'>
 				<div class='menu'>
-					<%= link_to ' Main page ', '/'%>
+					<div class='block'>
+						<%= link_to ' Main page ', '/'%>
+					</div>
 				</div>
 				<% if logged %>
 				<div class='menu'>
-					<%= link_to ' User profile ', '/users/'+session[:user_id].to_s%>
+					<div class='block'>
+						<%= link_to ' User profile ', '/users/'+session[:user_id].to_s%>
+					</div>
 				</div>
 				<% end %>
+				<% if isadmin %>
 				<div class='menu'>
-					 item3 
+					<div class='block'>
+						<%= link_to ' Users ', '/users'%>
+					</div> 
 				</div>
-				<div style="float:right">
+				<% end %>
+				<div class='block' style="float:right">
 					<%=render :partial=>'search/form'%>
 				</div>
 			</div>

@@ -103,3 +103,7 @@
  .msg2_body{
  	float: left;
  }
+
+  .block {
+ 	line-height: 1.2;
+ }

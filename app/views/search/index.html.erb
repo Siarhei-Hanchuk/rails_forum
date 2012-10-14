@@ -8,12 +8,14 @@
 
 	<% @arr.each do |topic| %>
 	<tr>
-		<td><%=link_to topic[1].title, '/topics/'+topic[0].to_s %></td>
+		<td><%= link_to topic[1].title, '/topics/'+topic[0].to_s %></td>
 		<td><%= topic[1].user.login %></td>
 		<td><%= topic[1].posts.count %></td>
 	</tr>
 	<% end %>
 </table>
 <% else %>
-Search by posts not support
+<% @posts=@arr %>
+<% @search=true %>
+<%= render 'topics/post'%>
 <% end %>

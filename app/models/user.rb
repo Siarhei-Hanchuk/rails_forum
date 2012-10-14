@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :login, :status, :avatar, :pass, :email, :pass_confirmation, :created_at
+  attr_accessible :last_visit, :login, :status, :avatar, :pass, :email, :pass_confirmation, :created_at
   has_many :topics
   has_many :posts
 

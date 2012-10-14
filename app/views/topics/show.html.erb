@@ -1,6 +1,9 @@
 <div id='page'>	
 	<b>Title:</b>
-	<%= @topic.title %>, <%= link_to 'Edit', edit_topic_path(@topic) %>
+	<%= @topic.title %>, 
+	<%if isadmin%>
+	<%= link_to 'Edit', edit_topic_path(@topic) %>
+	<%end%>
 	<div class='desc'>
 		<b>Part:</b>
 		<%= link_to @topic.part.title, '/parts/'+@topic.part_id.to_s %>,
@@ -8,36 +11,8 @@
 		<%= @topic.user.login %>
 	</div>
 
-	<table id='table'>
-		<tr>
-			<th></th>
-			<th></th>
-		</tr>
-
-		<% @topic.posts.each do |post| %>
-		<tr>
-			<td class='msg_user'>
-				<b><%= post.user.login %></b><br>
-				<%= 'Admin' if post.user.status==1 %>
-				<%= 'User'  if post.user.status==0 %>
-				<%= image_tag imgurl(post.user), :width=>100%>
-				Posts: <%= post.user.posts.count %><br>
-				Date: <%= to_date post.user.created_at %>
-			</div></td>
-			<td class='msg_body'>
-				<div class='msg_body_u'>
-					<%=post.body%><br>
-				</div>
-				<div class='msg_body_d'>
-					Posted at <%= post.created_at.to_datetime %>
-					<%= 'Edited at '+post.updated_at.to_datetime.to_s if post.created_at.to_datetime != post.updated_at.to_datetime%>
-					<%= link_to 'Edit', edit_post_path(post) %>,
-					<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-				</div>
-			</div></td>		
-		</tr>
-		<% end %>
-	</table>
+	<%@posts=@topic.posts%>
+	<%= render 'post'%>
 
 	<button id='b_b'>b</button>
 	<% @post=Post.new %>

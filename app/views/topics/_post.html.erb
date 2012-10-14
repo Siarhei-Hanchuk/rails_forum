@@ -1,0 +1,36 @@
+<table id='table'>
+	<tr>
+		<th></th>
+		<th></th>
+	</tr>
+
+	<% @posts.each do |post| %>
+	<tr>
+		<td class='msg_user'>
+			<b><%= post.user.login %></b><br>
+			<%= 'Admin' if post.user.status==1 %>
+			<%= 'User'  if post.user.status==0 %>
+			<%= image_tag imgurl(post.user), :width=>100%>
+			Posts: <%= post.user.posts.count %><br>
+			Date: <%= to_date post.user.created_at %>
+		</div></td>
+		<td class='msg_body'>
+			<div class='msg_body_u'>
+				<a name=<%=post.id%>>
+				<%if @search==true%>
+				<%=link_to 'Turn to topic', '/topics/'+post.topic_id.to_s+'#'+post.id.to_s %><br>
+				<%end%>
+				<%=post.body%><br>
+			</div>
+			<div class='msg_body_d'>
+				Posted at <%= to_date post.created_at %>,
+				<%='Edited at '+ ((to_date post.updated_at)+',') if post.created_at.to_datetime != post.updated_at.to_datetime%>
+				<%if hpe post%>
+				<%= link_to 'Edit', edit_post_path(post) %>,
+				<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+				<%end%>
+			</div>
+		</div></td>		
+	</tr>
+	<% end %>
+</table>

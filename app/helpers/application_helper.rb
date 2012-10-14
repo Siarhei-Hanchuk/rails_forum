@@ -10,6 +10,8 @@ module ApplicationHelper
 		session[:user_id]
 	end
 
+	
+
 	def to_date ar_datetime
 		ar_datetime.to_datetime.to_s.scan(/[\d-]+/)[0]
 	end
@@ -17,5 +19,9 @@ module ApplicationHelper
 	def imgurl user
 		return user.avatar.url if user.avatar.url
 		return '/ava.png'
+	end
+
+	def hpe post
+		true if isadmin || post.user_id==session[:user_id];
 	end
 end

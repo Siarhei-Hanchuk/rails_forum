@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development do
 	gem 'sqlite3'
 end
@@ -22,12 +20,12 @@ end
 
 gem 'jquery-rails'
 
-# group :production do
-#   gem 'mysql'
-# end
+group :production do
+  gem 'mysql'
+end
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
@@ -41,14 +39,10 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem 'bcrypt-ruby'
-
-#gem 'paperclip'
-
 gem 'carrierwave'
 
 gem 'rmagick'
 
-gem 'will_paginate', '>= 3.0.pre'
+#gem 'will_paginate', '>= 3.0.pre'
 
 gem 'mysql2'
