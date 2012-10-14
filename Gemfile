@@ -51,5 +51,6 @@ gem 'mini_magick'
 
 gem 'will_paginate', '>= 3.0.pre'
 
-gem 'mysql'
+#gem 'mysql'
+gem 'activerecord-mysql-adapte'
 gem 'mysql2'
