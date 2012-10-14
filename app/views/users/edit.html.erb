@@ -1,8 +1,8 @@
 <h1>Editing user</h1>
 
 <%= form_for(@user) do |f| %>
-
-  <%=image_tag @user.avatar.url, :width=>100 %>
+  
+  <%=image_tag imgurl(@user), :width=>100 %>
   <br>
   <%= f.file_field :avatar %>
 

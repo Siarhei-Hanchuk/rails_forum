@@ -13,4 +13,9 @@ module ApplicationHelper
 	def to_date ar_datetime
 		ar_datetime.to_datetime.to_s.scan(/[\d-]+/)[0]
 	end
+
+	def imgurl user
+		return user.avatar.url if user.avatar.url
+		return '/ava.png'
+	end
 end

@@ -20,7 +20,7 @@
 				<b><%= post.user.login %></b><br>
 				<%= 'Admin' if post.user.status==1 %>
 				<%= 'User'  if post.user.status==0 %>
-				<%= image_tag post.user.avatar, :width=>100%>
+				<%= image_tag imgurl(post.user), :width=>100%>
 				Posts: <%= post.user.posts.count %><br>
 				Date: <%= to_date post.user.created_at %>
 			</div></td>
