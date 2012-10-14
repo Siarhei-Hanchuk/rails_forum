@@ -8,7 +8,11 @@
 		<b>Part:</b>
 		<%= link_to @topic.part.title, '/parts/'+@topic.part_id.to_s %>,
 		<b>Author:</b>
+		<%if @topic.user%>
 		<%= @topic.user.login %>
+		<%else%>
+		USER REMOVED
+		<%end%>
 	</div>
 
 	<%@posts=@topic.posts%>

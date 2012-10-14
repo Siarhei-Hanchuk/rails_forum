@@ -10,8 +10,6 @@ module ApplicationHelper
 		session[:user_id]
 	end
 
-	
-
 	def to_date ar_datetime
 		ar_datetime.to_datetime.to_s.scan(/[\d-]+/)[0]
 	end
