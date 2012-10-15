@@ -18,6 +18,12 @@ class PartsController < ApplicationController
   def show
     @part = Part.find(params[:id])
     @topics=@part.topics
+
+    @topics.sort! {|b,a|
+      a.posts.last.updated_at <=> b.posts.last.updated_at
+    }
+    #@topics=@topics.paginate :page=>params[:page], :per_page=>5
+    #@topics=@part.topics.paginate :page=>params[:page], :per_page=>5
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @part }

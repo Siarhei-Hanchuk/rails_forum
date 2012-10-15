@@ -4,6 +4,9 @@
 	<%if isadmin%>
 	<%= link_to 'Edit', edit_topic_path(@topic) %>
 	<%end%>
+	<%@posts=@topic.posts.paginate :page=>params[:page], :per_page=>5 %>
+	<p><%= will_paginate @posts%></p>
+
 	<div class='desc'>
 		<b>Part:</b>
 		<%= link_to @topic.part.title, '/parts/'+@topic.part_id.to_s %>,
@@ -15,16 +18,14 @@
 		<%end%>
 	</div>
 
-	<%@posts=@topic.posts%>
 	<%= render 'post'%>
-
+	<p><%= will_paginate @posts%></p>
 	<button id='b_b'>b</button>
 	<% @post=Post.new %>
 	<%= form_for(@post) do |f| %>
 	<% if @post.errors.any? %>
 	<div id="error_explanation">
 		<h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
 		<ul>
 			<% @post.errors.full_messages.each do |msg| %>
 			<li><%= msg %></li>

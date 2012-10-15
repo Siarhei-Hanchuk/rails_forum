@@ -12,6 +12,7 @@
 <table id='table'>
   <tr>
     <th class='table_title'>Title</th>
+    <th>Last post</th>
     <th>Author</th>
     <th>Post count</th>
     <% if isadmin %>
@@ -22,6 +23,8 @@
   <% @topics.each do |topic| %>
   <tr>
     <td class='table_title'><%= link_to topic.title, topic %></td>
+    <td class='table_add'><%= show_user_login topic.posts.last.user if topic.posts.last %>,
+     at <%=to_date topic.posts.last.updated_at if topic.posts.last%></td>
     <td class='table_add'><%= show_user_login topic.user %></td>
     <td class='table_add'><%= topic.posts.count %></td>
     <% if isadmin %>
