@@ -72,7 +72,7 @@ Forum3::Application.configure do
     :port                 => 587,
     :domain               => 'glacial-sands-4601.herokuapp.com',
     :user_name            => 'app8408083@heroku.com',
-    :authentication       => 'plain',
+    #:authentication       => 'plain',
     :enable_starttls_auto => true  
   }
 
