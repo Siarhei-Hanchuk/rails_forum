@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.status=0;
-    UserMailer.welcom_email(@user).deliver
+    UserMailer.welcome_email(@user).deliver
     respond_to do |format|
       if @user.save
         session[:user_id]=@user.id
