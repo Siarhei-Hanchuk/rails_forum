@@ -15,7 +15,7 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= image_tag imgurl(user), :width=>30%></td>
+    <td><%= image_tag imgurl(user,true)%></td>
     <td><%= user.login %></td>
     <td><%= user.created_at %></td>
     <td><%= user.last_visit %></td>

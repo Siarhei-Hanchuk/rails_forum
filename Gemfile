@@ -21,7 +21,7 @@ end
 gem 'jquery-rails'
 
 group :production do
-  gem 'mysql'
+  gem 'mysql2'
 end
 
 # To use ActiveModel has_secure_password
@@ -45,4 +45,8 @@ gem 'rmagick'
 
 gem 'will_paginate', '>= 3.0.pre'
 
-gem 'mysql2'
+#gem 'less-rails-bootstrap'
+
+#gem 'therubyracer'
+
+#gem 'bootstrap-sass'

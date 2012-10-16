@@ -33,6 +33,13 @@ Forum3::Application.routes.draw do
 
   match '/register' => 'users#new'
 
+  controller :ajax do
+    get '/ajax' => :index
+    get '/ajax/like_logins' => :like_logins
+  end
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

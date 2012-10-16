@@ -116,3 +116,22 @@
  	font-size: 20px;
  	float: right;
  }
+
+ .like{
+ 	float: right;
+ 	background-color: #456555;
+ 	border-radius: 9px;
+ 	cursor: move;
+ }
+
+ .like_p{
+ 	color: black;
+ }
+
+ .like_m{
+ 	color: grey;
+ }
+
+ .likes_list{
+ 	background-color: #B88787;
+ }
