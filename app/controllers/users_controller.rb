@@ -46,10 +46,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.status=0;
-    UserMailer.welcome_email(@user).deliver
     respond_to do |format|
       if @user.save
         session[:user_id]=@user.id
+        UserMailer.welcome_email(@user).deliver
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -91,15 +91,23 @@ class UsersController < ApplicationController
   def ban
     user=User.find(params[:user_id])
     user.ban
-
-    UserMailer.ban_email(user).deliver
-
-    redirect_to '/users/', notice: 'User are banned'
+    if user.save
+      UserMailer.ban_email(user).deliver
+      redirect_to '/users/', notice: 'User are banned'
+    else
+      redirect_to '/users/', notice: 'Error ban'
+    end
   end
 
   def unban
-    user=User.find(params[:user_id]).unban
-    redirect_to '/users/', notice: 'User are unbanned'
+    user=User.find(params[:user_id])
+    user.unban
+    if user.save
+      UserMailer.ban_email(user).deliver
+      redirect_to '/users/', notice: 'User are unbanned'
+    else
+      redirect_to '/users/', notice: 'Error ban'
+    end
   end
 
   def change_password
@@ -108,7 +116,6 @@ class UsersController < ApplicationController
     if @p1==@p2
       u=User.find(session[:user_id])
       u.pass=@p1
-
     end
     if u.save
       redirect_to '/users/'+session[:user_id].to_s, notice: 'Password successfully changed'

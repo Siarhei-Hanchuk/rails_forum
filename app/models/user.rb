@@ -51,11 +51,9 @@ class User < ActiveRecord::Base
 
   def ban
     self.status=status+10 if !self.banned?
-    self.save
   end
 
   def unban
     self.status=status-10 if self.banned?
-    self.save
   end
 end
