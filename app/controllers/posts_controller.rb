@@ -26,6 +26,10 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
+    if User.find(session[:user_id]).banned?
+      redirect_to '/', notice: 'You banned' 
+      return
+    end
     @post = Post.new
 
     respond_to do |format|
@@ -46,6 +50,10 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    if User.find(session[:user_id]).banned?
+      redirect_to '/', notice: 'You banned' 
+      return
+    end
     @post = Post.new(params[:post])
     @post.user_id=session[:user_id]
     respond_to do |format|

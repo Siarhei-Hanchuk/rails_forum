@@ -114,6 +114,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 3.2.1)
   jquery-rails
+  mail
   mysql2
   rails (= 3.2.8)
   rmagick

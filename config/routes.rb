@@ -15,6 +15,8 @@ Forum3::Application.routes.draw do
 
   resources :topics
 
+  get '/users/ban' => 'users#ban'
+  get '/users/unban' => 'users#unban'
   resources :users
 
   controller :sessions do
@@ -38,7 +40,7 @@ Forum3::Application.routes.draw do
     get '/ajax/like_logins' => :like_logins
   end
 
-
+  post '/user/change_password' => 'users#change_password'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -27,6 +27,10 @@ class TopicsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.json
   def new
+    if User.find(session[:user_id]).banned?
+      redirect_to '/', notice: 'You banned' 
+      return
+    end
     @topic = Topic.new
     @topic.part_id=params[:part]
     respond_to do |format|
@@ -43,6 +47,10 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
+    if User.find(session[:user_id]).banned?
+      redirect_to '/', notice: 'You banned' 
+      return
+    end
     @topic = Topic.new(params[:topic])
     @topic.user_id=session[:user_id];
     respond_to do |format|

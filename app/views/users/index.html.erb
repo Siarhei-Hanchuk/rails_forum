@@ -20,7 +20,11 @@
     <td><%= user.created_at %></td>
     <td><%= user.last_visit %></td>
     <td><%= user.email %></td>
-    <td><%= link_to 'Ban', '' %></td>
+    <%if user.banned?%>
+    <td><%= link_to 'unBan', '/users/unban?user_id='+user.id.to_s %></td>
+    <%else%>
+    <td><%= link_to 'Ban', '/users/ban?user_id='+user.id.to_s %></td>
+    <%end%>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

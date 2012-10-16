@@ -12,32 +12,20 @@
 
 <% end %>
 
-<%= form_for(@user) do |f| %>
-
-<!--   <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %> -->
+<%= form_tag('/user/change_password') do %>
 
   <div class="field">
-    <%= f.label :pass %><br />
-    <%= f.text_field :pass %>
+    <%= label_tag 'Pass' %><br />
+    <%= password_field_tag :pass, params[:pass]%>
   </div>
 
   <div class="field">
-    <%= f.label :pass_confirmation %><br />
-    <%= f.text_field :pass_confirmation %>
+    <%= label_tag 'Pass2' %><br />
+    <%= password_field_tag :pass_confirmation, params[:pass_confirmation]%>
   </div>
   
   <div class="actions">
-    <%= f.submit 'Update password' %>
+    <%= submit_tag 'Update password' %>
   </div>
 <% end %>
 

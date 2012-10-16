@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   attr_accessor :avatar_file_name
 
   validates :login, :uniqueness => true
+  validates_format_of :login, :with => /\A\w\Z/, :on => :create
+#  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   validates :pass, :confirmation => true
   validates :login, :length=> {:minimum=>3, :maximun=>12}
   validates :login, :pass, :status, :presence => true
@@ -16,6 +18,10 @@ class User < ActiveRecord::Base
     if status%10 == 1
       true
     end
+  end
+
+  def banned?
+    true if status/10 == 1
   end
 
   def User.encrypt_password(pass)
@@ -41,5 +47,15 @@ class User < ActiveRecord::Base
   			user
   		end
   	end
+  end
+
+  def ban
+    self.status=status+10 if !self.banned?
+    self.save
+  end
+
+  def unban
+    self.status=status-10 if self.banned?
+    self.save
   end
 end

@@ -50,3 +50,5 @@ gem 'will_paginate', '>= 3.0.pre'
 #gem 'therubyracer'
 
 #gem 'bootstrap-sass'
+
+gem 'mail'
