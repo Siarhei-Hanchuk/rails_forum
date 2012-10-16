@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.status=0;
+    UserMailer.welcom_mail(@user).deliver
     respond_to do |format|
       if @user.save
         session[:user_id]=@user.id
@@ -91,7 +92,7 @@ class UsersController < ApplicationController
     user=User.find(params[:user_id])
     user.ban
 
-    UserMailer.welcome_email(user).deliver
+    UserMailer.ban_email(user).deliver
 
     redirect_to '/users/', notice: 'User are banned'
   end

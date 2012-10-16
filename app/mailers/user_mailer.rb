@@ -3,7 +3,12 @@ class UserMailer < ActionMailer::Base
 
 	def welcome_email(user)
 		@user = user
-		@url  = "http://example.com/login"
+		@url  = "http://glacial-sands-4601.herokuapp.com/"
 		mail(:to => user.email, :subject => "Welcome to My Awesome Site")
+	end
+
+	def ban_email(user)
+		@user = user
+		mail(:to => user.email, :subject => "You banned")
 	end
 end
