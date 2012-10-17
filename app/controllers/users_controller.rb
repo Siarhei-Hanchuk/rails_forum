@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id]=@user.id
-        UserMailer.welcome_email(@user).deliver
+        UserMailer.welcome_email(@user).deliver if user.email
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     user=User.find(params[:user_id])
     user.ban
     if user.save
-      UserMailer.ban_email(user).deliver
+      UserMailer.ban_email(user).deliver if user.email
       redirect_to '/users/', notice: 'User are banned'
     else
       redirect_to '/users/', notice: 'Error ban'
@@ -103,7 +103,6 @@ class UsersController < ApplicationController
     user=User.find(params[:user_id])
     user.unban
     if user.save
-      UserMailer.ban_email(user).deliver
       redirect_to '/users/', notice: 'User are unbanned'
     else
       redirect_to '/users/', notice: 'Error ban'
