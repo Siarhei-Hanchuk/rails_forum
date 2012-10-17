@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   skip_before_filter :is_admin
+  load_and_authorize_resource
 
   # GET /posts
   # GET /posts.json

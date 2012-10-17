@@ -52,3 +52,7 @@ gem 'will_paginate', '>= 3.0.pre'
 #gem 'bootstrap-sass'
 
 gem 'mail'
+
+gem 'devise'
+
+gem 'cancan'

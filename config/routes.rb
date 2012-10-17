@@ -1,4 +1,6 @@
 Forum3::Application.routes.draw do
+  devise_for :user2s
+
   get "newpost/index"
 
   get "search/index"

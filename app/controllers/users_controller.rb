@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_filter :authorize#, :only => [:show,:update,:edit]
   skip_before_filter :is_admin, :except => [:index, :destroy, :ban]
+  
   # GET /users
   # GET /users.json
   def index
@@ -49,7 +50,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id]=@user.id
-        UserMailer.welcome_email(@user).deliver if user.email
+        UserMailer.welcome_email(@user).deliver if @user.email
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
