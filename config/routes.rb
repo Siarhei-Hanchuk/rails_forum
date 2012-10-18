@@ -2,8 +2,6 @@ Forum3::Application.routes.draw do
 
   get "omniauth_callbacks/facebook"
 
-  devise_for :uzers
-
   resources :uzers
 
   get "newpost/index"
