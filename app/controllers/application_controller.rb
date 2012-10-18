@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-	before_filter :authorize
-	before_filter :is_admin
-	before_filter :lastvisit
+	#before_filter :authorize
+	#before_filter :is_admin
+	#before_filter :lastvisit
 	protect_from_forgery
 
 	protected
