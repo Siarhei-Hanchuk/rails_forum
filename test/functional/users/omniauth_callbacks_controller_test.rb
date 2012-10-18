@@ -6,4 +6,9 @@ class Users::OmniauthCallbacksControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get vkontakte" do
+    get :vkontakte
+    assert_response :success
+  end
+
 end

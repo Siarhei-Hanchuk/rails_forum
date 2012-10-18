@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  login: MyString
-  pass: MyString
+  username: MyString
+  nickname: MyString
+  provider: MyString
+  url: MyString
 
 two:
-  login: MyString
-  pass: MyString
+  username: MyString
+  nickname: MyString
+  provider: MyString
+  url: MyString

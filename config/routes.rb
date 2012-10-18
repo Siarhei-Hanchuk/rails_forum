@@ -1,5 +1,9 @@
 Forum3::Application.routes.draw do
 
+  get "omniauth_callbacks/vkontakte"
+
+  devise_for :users
+
   get "omniauth_callbacks/facebook"
 
   resources :uzers
@@ -96,7 +100,7 @@ Forum3::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'parts#index'
+  # root :to => 'parts#index'
 
   # See how all your routes lay out with "rake routes"
 
@@ -105,8 +109,11 @@ Forum3::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 
   Forum3::Application.routes.draw do
-    devise_for :uzers, :controllers => { :omniauth_callbacks => "uzers/omniauth_callbacks" }
-    resources :uzers, :only => [:index, :destroy]
-    #root :to => 'uzers#index'
+  get "omniauth_callbacks/vkontakte"
+
+    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+    resources :users, :only => [:index, :destroy]
+    root :to => 'users#index'
   end
+
 end

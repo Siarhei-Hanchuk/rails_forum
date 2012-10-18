@@ -82,7 +82,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = "d7828fbc26c437ea92de47835c9a4951d4b1da3b5c7609381bf1d956433265b9f6e8d1434234a2fc37b0949bfb4b3ea1d4be04d659a1e1484d781f276c12c0db"
+  # config.pepper = "0f6833025d538cd6ee2b57e416994bcfddd7f533272c1a5846ac9c14ef8f29557377b89e27f5e3e537b91814615f876cfe705818982ac8e903e05d41f2efe2e1"
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -229,7 +229,4 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
-
-  config.omniauth :facebook, '291395354294872', '76042cc2e588dc3916b6a32f3e7b3782'
-
 end
