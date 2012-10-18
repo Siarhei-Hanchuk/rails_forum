@@ -100,7 +100,7 @@ Forum3::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'parts#index'
+  #root :to => 'parts#index'
 
   # See how all your routes lay out with "rake routes"
 
@@ -109,8 +109,8 @@ Forum3::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 
   Forum3::Application.routes.draw do
-    devise_for :users, :controllers => { :omniauth_callbacks => "uzers/omniauth_callbacks" }
-    resources :users, :only => [:index, :destroy]
+    devise_for :uzers, :controllers => { :omniauth_callbacks => "uzers/omniauth_callbacks" }
+    resources :uzers, :only => [:index, :destroy]
     root :to => 'uzers#index'
   end
 end
