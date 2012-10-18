@@ -10,10 +10,10 @@ class Uzer < ActiveRecord::Base
   attr_accessible :nickname, :provider, :url, :username
 
   def self.find_for_facebook_oauth access_token
-  	if user = User.where(:url => access_token.info.urls.Facebook).first
-  		user
+  	if uzer = Uzer.where(:url => access_token.info.urls.Facebook).first
+  		uzer
   	else 
-  		User.create!(:provider => access_token.provider, :url => access_token.info.urls.Facebook, :username => access_token.extra.raw_info.name, :nickname => access_token.extra.raw_info.username, :email => access_token.extra.raw_info.email, :password => Devise.friendly_token[0,20]) 
+  		Uzer.create!(:provider => access_token.provider, :url => access_token.info.urls.Facebook, :username => access_token.extra.raw_info.name, :nickname => access_token.extra.raw_info.username, :email => access_token.extra.raw_info.email, :password => Devise.friendly_token[0,20]) 
   	end
   end
 end
