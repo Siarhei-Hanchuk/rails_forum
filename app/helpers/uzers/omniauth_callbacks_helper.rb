@@ -1,0 +1,2 @@
+module Uzers::OmniauthCallbacksHelper
+end

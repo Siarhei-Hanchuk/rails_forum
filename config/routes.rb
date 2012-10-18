@@ -1,5 +1,12 @@
 Forum3::Application.routes.draw do
-  devise_for :user2s
+
+  get "omniauth_callbacks/facebook"
+
+  devise_for :uzers
+
+  devise_for :users
+
+  resources :uzers
 
   get "newpost/index"
 
@@ -100,4 +107,10 @@ Forum3::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+
+  Forum3::Application.routes.draw do
+    devise_for :users, :controllers => { :omniauth_callbacks => "uzers/omniauth_callbacks" }
+    resources :users, :only => [:index, :destroy]
+    root :to => 'uzers#index'
+  end
 end

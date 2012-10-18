@@ -40,19 +40,15 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'debugger'
 
 gem 'carrierwave'
-
 gem 'rmagick'
-
 gem 'will_paginate', '>= 3.0.pre'
-
-#gem 'less-rails-bootstrap'
-
-#gem 'therubyracer'
-
-#gem 'bootstrap-sass'
-
 gem 'mail'
 
 gem 'devise'
 
-gem 'cancan'
+gem 'haml-rails'
+gem 'twitter-bootstrap-rails'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
