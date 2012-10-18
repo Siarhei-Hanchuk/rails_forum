@@ -4,8 +4,6 @@ Forum3::Application.routes.draw do
 
   devise_for :uzers
 
-  devise_for :users
-
   resources :uzers
 
   get "newpost/index"
