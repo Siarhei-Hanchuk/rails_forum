@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forum3</title>
+	<meta charset="UTF-8">
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="head">
+		<div id="head_lc">
+			<div id='head_u'>
+				<br>Rails Forum
+			</div>
+			<div id='head_d'>
+				<div class='menu'>
+					<div class='block'>
+						<%= link_to ' Main page ', '/'%>
+					</div>
+				</div>
+				<% if logged %>
+				<div class='menu'>
+					<div class='block'>
+						<%= link_to ' User profile ', '/users/'+session[:user_id].to_s%>
+					</div>
+				</div>
+				<% end %>
+				<% if isadmin %>
+				<div class='menu'>
+					<div class='block'>
+						<%= link_to ' Users ', '/users'%>
+					</div> 
+				</div>
+				<% end %>
+				<div class='block2 searchform'>
+					<%=render :partial=>'search/form'%>
+				</div>
+			</div>
+		</div>
+		<div id="head_r">
+			<%= render :partial => 'sessions/form'  %>
+		</div>
+	</div>
+	<p id="notice"><%= notice %></p>
+	<div id='page'>
+		<%=link_to 'link', uzer_omniauth_authorize_path(:facebook)%>
+		<%= yield %>
+	</div>
+</body>
+</html>
