@@ -16,6 +16,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		if @user.persisted?
 			flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Vkontakte"
 			sign_in_and_redirect @user, :event => :authentication
+			session[:user_id]=@user.id
 		else
 			flash[:notice] = "authentication error"
 			redirect_to root_path
