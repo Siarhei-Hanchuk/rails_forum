@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  before_create :create_role
+  #before_create :create_role
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -30,12 +30,14 @@ class User < ActiveRecord::Base
     if user = User.where(:url => access_token.info.urls.Vkontakte).first
       user
     else 
-      User.create!(:provider => access_token.provider, :url => access_token.info.urls.Vkontakte, :username => access_token.info.name, :nickname => access_token.extra.raw_info.domain, :email => access_token.extra.raw_info.domain+'<hh user=vk>.com', :password => Devise.friendly_token[0,20]) 
+      User.create!(:provider => access_token.provider, :url => access_token.info.urls.Vkontakte,
+        :username => access_token.info.name, :nickname => access_token.extra.raw_info.domain,
+        :email => access_token.extra.raw_info.domain+'@vk.com', :password => Devise.friendly_token[0,20]) 
     end
   end
 
-  private
-    def create_role
-      self.roles << Role.find_by_name(:user)  
-    end  
+  #private
+    #def create_role
+      #self.roles << Role.find_by_name(:user)
+    #end  
 end
