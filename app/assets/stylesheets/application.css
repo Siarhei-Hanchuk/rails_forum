@@ -13,10 +13,6 @@
  *= require twitter/bootstrap
  */
 
- body{
- 	background-color: #19A6D3;
- }
-
  #notice{
  	text-align: center;
  }
