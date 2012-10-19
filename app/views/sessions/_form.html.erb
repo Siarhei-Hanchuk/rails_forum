@@ -1,27 +1,11 @@
 <% if !session[:user_id] %>
-<%= form_tag('/sessions/new') do %>
-<fieldset>
-	<legend>Please Log In, or <%=link_to 'Register', '/register'%></legend>
-	<div>
-		
-		<label for="name" >Name:</label>
-		
-		<%= text_field_tag :name, params[:name] %>
-	</div>
-	<div>
-		<label for="password" >Password:</label>
-		<%= password_field_tag :password, params[:password] %>
-	</div>
-	<div>
-		<%= submit_tag "Login" %>
-	</div>
-</fieldset>
-<% end %>
+<%=link_to 'Logged with FaceBook', user_omniauth_authorize_path(:facebook)%>
+<%=link_to 'Logged with vkontakte', user_omniauth_authorize_path(:vkontakte)%>
 <% else %>
 <% user=User.find(session[:user_id])%>
 <%=image_tag imgurl(user), :class=>'leftimg'%>
 <br>
-You are logged as <%= link_to user.login, '/users/'+user.id.to_s %>,
+You are logged as <%= link_to user.username, '/users/'+user.id.to_s %>,
 <%= link_to 'Exit','/sessions/destroy'%><br>
 You have <%= user.posts.count %> posts and <%= user.topics.count %> topics.<br>
 Registration date: <%= user.created_at.to_datetime.to_s.scan(/[\d-]+/)[0] %>
