@@ -43,12 +43,6 @@ ActiveRecord::Schema.define(:version => 20121020101709) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "topics", :force => true do |t|
     t.string   "title"
     t.integer  "user_id"
@@ -64,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20121020101709) do
     t.string   "url"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "avatar"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
@@ -74,22 +69,10 @@ ActiveRecord::Schema.define(:version => 20121020101709) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "avatar"
-    t.date     "last_visit"
     t.integer  "roles_mask"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "users_roles", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "role_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "users_roles", ["role_id"], :name => "index_users_roles_on_role_id"
-  add_index "users_roles", ["user_id"], :name => "index_users_roles_on_user_id"
 
 end
