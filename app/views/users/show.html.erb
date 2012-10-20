@@ -1,0 +1,10 @@
+Your profile, <%=@user.username%>:<br>
+Email:<%=@user.email%><br> 
+
+You have <%= @user.posts.count %> posts and <%= @user.topics.count %> topics.<br>
+Registration date: <%= @user.created_at.to_datetime.to_s.scan(/[\d-]+/)[0] %>:<br>
+
+Avatar:<br>
+<%=image_tag imgurl(@user), :width=>100 %>
+<br>
+<%= link_to 'Edit profile', edit_user_path(@user) %>

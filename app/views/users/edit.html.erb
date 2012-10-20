@@ -1,0 +1,36 @@
+<h1>Editing user</h1>
+<div class='span4'>
+  <%= form_for(@user) do |f| %>
+  
+  <%=image_tag imgurl(@user), :width=>100 %>
+  <br>
+  <%= f.file_field :avatar %>
+
+  <div class="actions">
+    <%= f.submit 'Update avatar'%>
+  </div>
+
+  <% end %>
+
+  <%= form_for(@user) do |f| %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit 'Update email' %>
+  </div>
+  <% end %>
+</div>
+<%= link_to 'Ban', '/users/ban?user_id='+@user.id.to_s %>
+<div class='span3'>
+  <% for role in User::ROLES %>
+  <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
+  <%= label_tag "user_roles_#{role}", role.humanize %>
+  <%= link_to "change role", '/users/ban?role='+role+'&user_id='+@user.id.to_s%>
+  <br>
+  <% end %>
+  <%= hidden_field_tag "user[roles][]", "" %>
+</div>

@@ -1,0 +1,5 @@
+Topic.create(:id => 1, :title => "Ololo", :user_id => 1, :part_id => 11)
+Topic.create(:id => 2, :title => "йцу", :user_id => 1, :part_id => 10)
+Topic.create(:id => 3, :title => "asd", :user_id => 1, :part_id => 9)
+Topic.create(:id => 4, :title => "AAA", :user_id => 1, :part_id => 9)
+Topic.create(:id => 5, :title => "qqqqqqqqqq", :user_id => 1, :part_id => 10)
