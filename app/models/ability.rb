@@ -10,9 +10,9 @@ class Ability
         can [:new, :create], Post
     end
 
-    #if user.is? :admin
+    if user.is? :admin
         can [:ban], User
-    #end
+    end
 
     #can :new, Topic if user.is? :user
     can :show, User
