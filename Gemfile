@@ -57,3 +57,5 @@ gem 'cancan'
 gem 'rails_admin'
 
 gem 'less-rails-bootstrap'
+
+gem 'seed_dumper'
