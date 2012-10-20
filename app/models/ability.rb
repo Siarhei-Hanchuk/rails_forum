@@ -11,7 +11,7 @@ class Ability
     end
 
     if user.is? :admin
-        can [:ban], User
+        can [:index,:ban], User
     end
 
     #can :new, Topic if user.is? :user
