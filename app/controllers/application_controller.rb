@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
 
 	private
 	def current_ability
-		if session[:user_id]
-			@current_ability = Ability.new(User.find(session[:user_id])) 
-		else
+		#if session[:user_id]
+		#	@current_ability = Ability.new(User.find(session[:user_id])) 
+		#else
 			@current_ability = Ability.new(User.new)
-		end
+		#end
 	end
 
 	protected
