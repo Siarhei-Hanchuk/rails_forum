@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
 
 	private
 	def current_ability
-		session[:user_id]=nil
 		if session[:user_id] && User.exists?(session[:user_id])
 			@current_ability = Ability.new(User.find(session[:user_id])) 
 		else
