@@ -53,8 +53,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 
-#gem 'cancan'
-gem 'rails_admin'
+gem 'cancan'
+
+#gem 'rails_admin'
 
 gem 'less-rails-bootstrap'
 
