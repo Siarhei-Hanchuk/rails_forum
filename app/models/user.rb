@@ -9,9 +9,15 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :nickname, :provider, :url, :username
+  attr_accessible :roles
+
+  attr_accessible :avatar
+  mount_uploader :avatar, AvatarUploader
+  attr_accessor :avatar_file_name
 
   has_many :topics
   has_many :posts
+  has_many :comments
 
   has_many :users_roles
   has_many :roles, :through => :users_roles
@@ -36,8 +42,23 @@ class User < ActiveRecord::Base
     end
   end
 
+  ROLES = %w[admin moder author user banned]
+  def roles=(roles)
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+  end
+
+  def roles
+    ROLES.reject do |r|
+      ((roles_mask || 0) & 2**ROLES.index(r)).zero?
+    end
+  end
+
+  def is?(role)
+    roles.include?(role.to_s)
+  end
+
   #private
     #def create_role
       #self.roles << Role.find_by_name(:user)
     #end  
-end
+  end

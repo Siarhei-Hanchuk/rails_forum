@@ -1,5 +1,7 @@
 Forum3::Application.routes.draw do
 
+  resources :comments
+
   #get "omniauth_callbacks/vkontakte"
 
   #get "omniauth_callbacks/facebook"
@@ -13,6 +15,9 @@ Forum3::Application.routes.draw do
   get "sessions/create"
 
   get "sessions/destroy"
+
+  get '/users/ban' => 'users#ban'
+  get '/users/unban' => 'users#unban'
 
   resources :posts
 
@@ -43,6 +48,7 @@ Forum3::Application.routes.draw do
   controller :ajax do
     get '/ajax' => :index
     get '/ajax/like_logins' => :like_logins
+    post '/ajax/comment' => :comment
   end
 
   post '/user/change_password' => 'users#change_password'
@@ -105,6 +111,8 @@ Forum3::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 
   Forum3::Application.routes.draw do
+  resources :comments
+
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
     resources :users, :only => [:index, :destroy]
     #root :to => 'users#index'

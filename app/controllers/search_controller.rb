@@ -1,5 +1,7 @@
 class SearchController < ApplicationController
-  skip_before_filter :is_admin
+  #skip_before_filter :is_admin
+  authorize_resource :class => false
+  
   def index
   	@text=params[:text]
   	@type=(params[:gender])[:contactmethod]

@@ -43,4 +43,16 @@ class AjaxController < ActionController::Base
       		format.json { render json: @users }
       	end	
     end
+
+    def comment
+    	@comment=Comment.new user_id: session[:user_id], post_id: params[:post_id], body: params[:comment]
+    	if @comment.save
+    		@respond=@comment.user.username+': '+@comment.body#+', at '+@comment.created_at.to_datetime.to_s.scan(/[\d-]+/)[0]
+      	else
+      		@respond=nil
+      	end
+      	respond_to do |format|
+      		format.html
+      	end	
+    end
 end

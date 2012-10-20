@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :topic
 	has_many :likes
+	has_many :comments
 
 	validates :body, :topic_id, :user_id, :presence => true
 	validates :body, :length=> {:maximum => 250}

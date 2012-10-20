@@ -15,6 +15,10 @@
 //= require twitter/bootstrap
 //= require_tree .
 
+$(document).ready(function(){
+	$("p").append("<strong>Hello</strong>");
+});
+
 $(document).ready(function() {
 	$("table tr:nth-child(odd)").css("background-color","#dad0ff");
 	$("table tr:nth-child(even)").css("background-color","#fefefe");
@@ -39,6 +43,34 @@ $(document).ready(function() {
 
 	$('.like').mouseleave(function(event){
 		$(".likes_list").remove();
+	});
+
+	$('.comment_button').click(function(event){
+		id=event.target.id.match(/.*n([0-9]*).*/)[1];
+		text=$('#comment_input'+id).val();
+		if(text.length<1){
+			//$('<div>Message is empty</div>').appendBefore('#comment_input'+id);
+			return
+		}
+		$.post("/ajax/comment",
+		{
+			post_id: id,
+			comment: text
+		},
+		function(data){
+			//alert(data)
+			$('#send_comment'+id).before('<div>'+data+'</div>');
+		}
+		);
+	});
+
+	function getPostId(event){
+		return event.target.id.match(/.*\^([0-9]*).*/)[1];
+	}
+
+	$('.show_comment_button').click(function(event){
+		post_id=getPostId(event);
+		$('send_comment'+post_id).show();
 	});
 
 

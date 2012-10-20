@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  skip_before_filter :is_admin
+  #skip_before_filter :is_admin
   #load_and_authorize_resource
-
+  load_and_authorize_resource
   # GET /posts
   # GET /posts.json
   def index
@@ -51,10 +51,10 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    if User.find(session[:user_id]).banned?
-      redirect_to '/', notice: 'You banned' 
-      return
-    end
+    #if User.find(session[:user_id]).banned?
+    #  redirect_to '/', notice: 'You banned' 
+    #  return
+    #end
     @post = Post.new(params[:post])
     @post.user_id=session[:user_id]
     respond_to do |format|

@@ -3,17 +3,14 @@
 
   <table id='table'>
     <tr>
-      <th>Part name</th>
-      <%if isadmin%>
+      <th class='left_text'>Part name</th>
       <th></th>
       <th></th>
-      <% end %>
     </tr>
-
     <% @parts.each do |part| %>
     <tr>
       <td><%= link_to part.title, part %><br><span class='desc'><%= part.desc %></span></td>
-      <%if isadmin%>
+      <% if can? :edit, part %>
       <td><%= link_to 'Edit', edit_part_path(part) %></td>
       <td><%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>

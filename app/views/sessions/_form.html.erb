@@ -1,3 +1,4 @@
+<div id='login_form'>
 <% if !session[:user_id] %>
 <%=link_to 'Logged with FaceBook', user_omniauth_authorize_path(:facebook)%>
 <%=link_to 'Logged with vkontakte', user_omniauth_authorize_path(:vkontakte)%>
@@ -11,3 +12,4 @@ You have <%= user.posts.count %> posts and <%= user.topics.count %> topics.<br>
 Registration date: <%= user.created_at.to_datetime.to_s.scan(/[\d-]+/)[0] %>
 
 <% end %>
+</div>

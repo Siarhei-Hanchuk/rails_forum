@@ -31,7 +31,7 @@ module ApplicationHelper
 	end
 
 	def show_user_login user
-		return user.login if user
+		return user.username if user
 		'USER REMOVED'
 	end
 

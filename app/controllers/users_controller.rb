@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
   # GET /users
   # GET /users.json
   def index
@@ -80,4 +81,31 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def ban
+    user=User.find(params[:user_id])
+    role=params[:role]
+    if user.is? role
+      user.roles=user.roles-[role]
+    else
+      user.roles=user.roles<<role
+    end
+    if user.save
+      #UserMailer.ban_email(user).deliver if user.email
+      redirect_to '/users/'+user.id.to_s+'/edit', notice: 'Role changed'
+    else
+      redirect_to '/users/', notice: 'Error ban'
+    end
+  end
+
+  def unban
+    user=User.find(params[:user_id])
+    user.role='banned'
+    if user.save
+      redirect_to '/users/', notice: 'User are unbanned'
+    else
+      redirect_to '/users/', notice: 'Error ban'
+    end
+  end
+
 end

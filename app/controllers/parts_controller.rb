@@ -1,6 +1,8 @@
 class PartsController < ApplicationController
-  skip_before_filter :authorize, :only => [:index, :show]
-  skip_before_filter :is_admin, :only => [:index, :show]
+  #skip_before_filter :authorize, :only => [:index, :show]
+  #skip_before_filter :is_admin, :only => [:index, :show]
+  load_and_authorize_resource
+  #skip_authorize_resource :only => :index
 
   # GET /parts
   # GET /parts.json

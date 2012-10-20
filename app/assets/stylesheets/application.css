@@ -12,7 +12,7 @@
  *= require_tree .
  *= require twitter/bootstrap
  */
-body { padding-top: 60px; }
+ body { padding-top: 60px; }
  #notice{
  	text-align: center;
  }
@@ -131,4 +131,46 @@ body { padding-top: 60px; }
 
  .likes_list{
  	background-color: #B88787;
+ }
+
+ .btn-like {
+ 	width: 40px;
+ 	height: 20px;
+ 	text-align: center;
+ 	float: right;
+ 	background-color: hsl(170, 23%, 38%) !important;
+ 	background-repeat: repeat-x;
+ 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f8fbfa", endColorstr="#4a776f");
+ 	background-image: -khtml-gradient(linear, left top, left bottom, from(#f8fbfa), to(#4a776f));
+ 	background-image: -moz-linear-gradient(top, #f8fbfa, #4a776f);
+ 	background-image: -ms-linear-gradient(top, #f8fbfa, #4a776f);
+ 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f8fbfa), color-stop(100%, #4a776f));
+ 	background-image: -webkit-linear-gradient(top, #f8fbfa, #4a776f);
+ 	background-image: -o-linear-gradient(top, #f8fbfa, #4a776f);
+ 	background-image: linear-gradient(#f8fbfa, #4a776f);
+ 	border-color: #4a776f #4a776f hsl(170, 23%, 23%);
+ 	color: #333 !important;
+ 	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.99);
+ 	-webkit-font-smoothing: antialiased;
+ }
+
+ .center_text{
+ 	text-align: center;
+ }
+
+ #login_form2{
+ 	background-color: green;
+ }
+
+ .left_text{
+ 	text-align: left;
+ }
+
+ .comment{
+ 	float: right;
+ }
+
+ .hhh{
+ 	visibility: hidden;
+ 	display: none;
  }

@@ -1,45 +1,56 @@
-<table id='table'>
-	<tr>
-		<th></th>
-		<th></th>
-	</tr>
-
-	<% @posts.each do |post| %>
-	<tr>
-		<td class='msg_user'>
-			<%if post.user%>
-			<b><%= post.user.login %></b><br>
-			<%= 'Admin' if post.user.status==1 %>
-			<%= 'User'  if post.user.status==0 %>
-			<%= image_tag imgurl(post.user), :width=>100%>
-			Posts: <%= post.user.posts.count %><br>
-			Date: <%= to_date post.user.created_at %>
-			<%else%>
-			USER REMOVED
+<tr>
+	<td class='msg_user'>
+		<%if post.user%>
+		<b><%= post.user.username %></b><br>
+		<%= 'Admin' %>
+		<%= image_tag imgurl(post.user), :width=>100%>
+		Posts: <%= post.user.posts.count %><br>
+		Date: <%= to_date post.user.created_at %>
+		<%else%>
+		USER REMOVED
+		<%end%>
+	</td>
+	<td class='msg_body'>
+		<div class='msg_body_u'>
+			<a name=<%=post.id%>></a>
+			<%if @search==true%>
+			<%=link_to 'Turn to topic', '/topics/'+post.topic_id.to_s+'#'+post.id.to_s %><br>
 			<%end%>
-		</div></td>
-		<td class='msg_body'>
-			<div class='msg_body_u'>
-				<a name=<%=post.id%>></a>
-				<%if @search==true%>
-				<%=link_to 'Turn to topic', '/topics/'+post.topic_id.to_s+'#'+post.id.to_s %><br>
-				<%end%>
-				<%=post.body%><br>
-			</div>
-			<div class='msg_body_d'>
-				Posted at <%= to_date post.created_at %>,
-				<%='Edited at '+ ((to_date post.updated_at)+',') if post.created_at.to_datetime != post.updated_at.to_datetime%>
-				<% if hpe post %>
-				<%= link_to 'Edit', edit_post_path(post) %>,
-				<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%=post.body%><br>
+		</div>
+		<div class='msg_body_d'>
+			Posted at <%= to_date post.created_at %>,
+			<%='Edited at '+ ((to_date post.updated_at)+',') if post.created_at.to_datetime != post.updated_at.to_datetime%>
+			<% if hpe post %>
+			<%= link_to 'Edit', edit_post_path(post) %>,
+			<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+			<% end %>
+			<% if lol post%>
+			<div id='<%=post.id%>' class='btn-like like like_p'> + </div>
+			<% else %>
+			<div id='<%=post.id%>' class='btn-like like like_m'> + </div>
+			<% end %>
+		</div>
+	</td>		
+</tr>
+<tr>
+	<td>
+		<%= button_tag "comments", :id=>'showComment^'+post.id.to_s, :class=>'show_comment_button' %><br>
+	</td>
+	<td>
+		<div id='comments<%=post.id%>'>
+			<% if post.comments.size>0 %>
+				<% post.comments.each do |comment| %>
+					<%= render 'comment', :comment=>comment%>
 				<% end %>
-				<% if lol post%>
-				<div id='<%=post.id%>' class='like like_p'> + </div>
-				<% else %>
-				<div id='<%=post.id%>' class='like like_m'> + </div>
-				<% end %>
+			<% end %>
+			<div id='send_comment<%=post.id%>' class=''>
+				<div class='comment span6'>
+					<%= text_area_tag :body, params[:body], :rows=>3, :id=>'comment_input'+post.id.to_s,
+					:class=>'field span4'%><br>
+				</div>
+				<%= button_tag "comment", :id=>'comment_button'+post.id.to_s, :class=>'comment_button' %><br>
 			</div>
-		</div></td>		
-	</tr>
-	<% end %>
-</table>
+		</div>
+	</td>
+</tr>

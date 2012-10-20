@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
-  skip_before_filter :authorize, :only => [:index, :show]
-  skip_before_filter :is_admin
+  #skip_before_filter :authorize, :only => [:index, :show]
+  #skip_before_filter :is_admin
+  load_and_authorize_resource
 
   # GET /topics
   # GET /topics.json
@@ -27,10 +28,10 @@ class TopicsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.json
   def new
-    if User.find(session[:user_id]).banned?
-      redirect_to '/', notice: 'You banned' 
-      return
-    end
+    #if User.find(session[:user_id]).banned?
+    #  redirect_to '/', notice: 'You banned' 
+    #  return
+    #end
     @topic = Topic.new
     @topic.part_id=params[:part]
     respond_to do |format|
