@@ -41,14 +41,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  UsersRole = %w[admin moder author user banned]
+  ROLES = %w[admin moder author user banned]
   def roles=(roles)
-    self.roles_mask = (roles & UsersRole).map { |r| 2**UsersRole.index(r) }.inject(0, :+)
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
   end
 
   def roles
-    UsersRole.reject do |r|
-      ((roles_mask || 0) & 2**UsersRole.index(r)).zero?
+    ROLES.reject do |r|
+      ((roles_mask || 0) & 2**ROLES.index(r)).zero?
     end
   end
 
