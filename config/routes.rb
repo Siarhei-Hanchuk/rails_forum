@@ -6,9 +6,9 @@ Forum3::Application.routes.draw do
 
   resources :comments
 
-  get "omniauth_callbacks/vkontakte"
-
-  get "omniauth_callbacks/facebook"
+#  get "omniauth_callbacks/vkontakte"
+#
+#  get "omniauth_callbacks/facebook"
 
   get "newpost/index"
 
@@ -119,31 +119,15 @@ Forum3::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  Forum3::Application.routes.draw do
-
-  
-
-  
-
-  
-
-  
-
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  #get "dashboard/index"
-  
-  
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
-  #root :to => "rails_admin::Main#dashboard"
   match ':controller(/:action(/:id(.:format)))'
-
 
   resources :comments
 
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-    resources :users, :only => [:index, :destroy]
-  end
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  resources :users, :only => [:index, :destroy]
 
 end
