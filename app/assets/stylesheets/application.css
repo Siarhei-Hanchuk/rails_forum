@@ -12,7 +12,10 @@
  *= require_tree .
  *= require twitter/bootstrap
  */
- body { padding-top: 60px; }
+ body{
+ 	padding-top: 60px; 
+ }
+
  #notice{
  	text-align: center;
  }
@@ -154,4 +157,25 @@
  	-webkit-font-smoothing: antialiased;
  }
 
- 
+ .center_text{
+ 	text-align: center;
+ }
+
+ #login_form2{
+ 	background-color: green;
+ }
+
+ .left_text{
+ 	text-align: left;
+ }
+
+ .comment{
+ 	float: right;
+ }
+
+ .frame{
+ 	padding: 6px;
+ 	margin-bottom: 3px;
+ 	background-color: #EEE;
+ 	border-radius: 6px;
+ }
