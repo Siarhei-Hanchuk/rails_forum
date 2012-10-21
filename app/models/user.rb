@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
   ROLES = %w[admin moder author user banned]
   def roles=(roles)
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+    self.roles_mask = (roles & roles).map { |r| 2**ROLES.index(r) }.inject(0, :+)
   end
 
   def roles

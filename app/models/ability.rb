@@ -7,13 +7,15 @@ class Ability
     can [:show], Topic
 
     if user.is? :user
+        can [:new, :create], Comments
         can [:show,:new,:create], Topic
         can [:new, :create], Post
         can [:show,:edit,:update], User
     end
 
     if user.is? :moder
-        can [:edit,:update,:destroy], Topic
+        can [:destroy, :update, :edit], Comments
+        can [:edit, :update, :destroy], Topic
     end
 
     if user.is? :admin
