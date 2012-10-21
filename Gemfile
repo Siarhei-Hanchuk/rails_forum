@@ -59,8 +59,6 @@ gem 'rails_admin'
 
 gem 'less-rails-bootstrap'
 
-gem 'seed_dumper'
+#gem 'seed_dumper'
 
-gem 'yaml_db'
-
-#gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+#gem 'yaml_db'

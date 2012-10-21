@@ -154,30 +154,4 @@
  	-webkit-font-smoothing: antialiased;
  }
 
- .center_text{
- 	text-align: center;
- }
-
- #login_form2{
- 	background-color: green;
- }
-
- .left_text{
- 	text-align: left;
- }
-
- .comment{
- 	float: right;
- }
-
- .hhh{
- 	visibility: hidden;
- 	display: none;
- }
-
- .frame{
- 	padding: 6px;
- 	margin-bottom: 3px;
- 	background-color: #EEE;
- 	border-radius: 6px;
- }
+ 
