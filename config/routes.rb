@@ -6,9 +6,9 @@ Forum3::Application.routes.draw do
 
   resources :comments
 
-#  get "omniauth_callbacks/vkontakte"
-#
-#  get "omniauth_callbacks/facebook"
+  #get "omniauth_callbacks/vkontakte"
+
+  #get "omniauth_callbacks/facebook"
 
   get "newpost/index"
 
@@ -127,7 +127,10 @@ Forum3::Application.routes.draw do
 
   resources :comments
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  resources :users, :only => [:index, :destroy]
+  Forum3::Application.routes.draw do
+    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+    resources :users, :only => [:index, :destroy]
+    root :to => 'users#index'
+  end
 
 end
