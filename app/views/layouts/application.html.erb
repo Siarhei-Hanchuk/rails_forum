@@ -29,6 +29,9 @@
             <% if can? :index, User%>
             <li><%= link_to 'Users', '/users'%></li>
             <%end%>
+            <% if can? :index, :Admin%>
+            <li><%= link_to 'Admin', '/admin'%></li>
+            <%end%>
           </ul>
           <div class='block2 searchform'>    
           </div>
@@ -44,7 +47,7 @@
       </div>
       <div class="span3">
         <%= render :partial => 'sessions/form' %>
-        <%=render :partial=>'search/form' %>
+        <%= render :partial => 'search/form' %>
         </div>
       </div>
     </div>

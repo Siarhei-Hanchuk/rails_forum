@@ -1,5 +1,9 @@
 Forum3::Application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  get "dashboard/index"
+
   resources :comments
 
   #get "omniauth_callbacks/vkontakte"
@@ -51,7 +55,11 @@ Forum3::Application.routes.draw do
     post '/ajax/comment' => :comment
   end
 
-  post '/user/change_password' => 'users#change_password'
+  #post '/user/change_password' => 'users#change_password'
+
+  #namespace :admin do
+  #  get '', to: 'dashboard#index', as: '/'
+  #end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -103,6 +111,7 @@ Forum3::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'parts#index'
+  #get '/admin' => "rails_admin/main#index"
 
   # See how all your routes lay out with "rake routes"
 
@@ -111,11 +120,30 @@ Forum3::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 
   Forum3::Application.routes.draw do
+
+  
+
+  
+
+  
+
+  
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  #get "dashboard/index"
+  
+  
+  devise_for :users
+
+  #root :to => "rails_admin::Main#dashboard"
+  match ':controller(/:action(/:id(.:format)))'
+
+
   resources :comments
 
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
     resources :users, :only => [:index, :destroy]
-    #root :to => 'users#index'
   end
 
 end

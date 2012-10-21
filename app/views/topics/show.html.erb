@@ -1,6 +1,6 @@
 <b>Title:</b>
 <%= @topic.title %>, 
-<%if isadmin%>
+<%if can? :edit, Topic%>
 <%= link_to 'Edit', edit_topic_path(@topic) %>
 <%end%>
 <%@posts=@topic.posts.paginate :page=>params[:page], :per_page=>5 %>
@@ -44,7 +44,6 @@
 <% end %>
 <% if can? :new, Post %>
 <div class="field">
-	<i><%= f.label :body %></i><br />
 	<%= f.text_area :body, :cols => 60, :rows => 10, :class => 'app_input',  :class=>'field span7'%>
 </div>
 <%= f.hidden_field :topic_id, :value=>@topic.id %>

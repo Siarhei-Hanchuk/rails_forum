@@ -15,7 +15,7 @@
     <th>Last post</th>
     <th>Author</th>
     <th>Post count</th>
-    <% if isadmin %>
+    <% if can? :destroy, Topic %>
     <th>Actions</th>
     <%end%>
   </tr>
@@ -27,8 +27,10 @@
      at <%=to_date topic.posts.last.updated_at if topic.posts.last%></td>
     <td class='table_add'><%= show_user_login topic.user %></td>
     <td class='table_add'><%= topic.posts.count %></td>
-    <% if isadmin %>
-    <td class='table_add'><%= link_to 'Edit', edit_topic_path(topic) %>,<%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if can? :edit, Topic %>
+    <td class='table_add'>
+      <%= link_to 'Edit', edit_topic_path(topic), :class=>'btn btn-primary btn-mini'%>,
+      <%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini'  %></td>
     <%end%>
   </tr>
   <% end %>

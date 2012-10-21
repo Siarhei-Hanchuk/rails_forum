@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  #before_create :create_role
+  before_create :create_role
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -16,11 +16,10 @@ class User < ActiveRecord::Base
   attr_accessor :avatar_file_name
 
   has_many :topics
-  has_many :posts
+  has_many :posts  
   has_many :comments
 
-  has_many :users_roles
-  has_many :roles, :through => :users_roles
+  has_many :likes
 
   def self.find_for_facebook_oauth access_token
     if user = User.where(:url => access_token.info.urls.Facebook).first
@@ -42,14 +41,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  ROLES = %w[admin moder author user banned]
+  UsersRole = %w[admin moder author user banned]
   def roles=(roles)
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+    self.roles_mask = (roles & UsersRole).map { |r| 2**UsersRole.index(r) }.inject(0, :+)
   end
 
   def roles
-    ROLES.reject do |r|
-      ((roles_mask || 0) & 2**ROLES.index(r)).zero?
+    UsersRole.reject do |r|
+      ((roles_mask || 0) & 2**UsersRole.index(r)).zero?
     end
   end
 
@@ -57,8 +56,8 @@ class User < ActiveRecord::Base
     roles.include?(role.to_s)
   end
 
-  #private
-    #def create_role
-      #self.roles << Role.find_by_name(:user)
-    #end  
-  end
+  private
+    def create_role
+      self.roles = ["user"]
+    end  
+end

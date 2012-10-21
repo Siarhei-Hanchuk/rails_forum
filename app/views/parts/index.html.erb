@@ -10,16 +10,20 @@
     <% @parts.each do |part| %>
     <tr>
       <td><%= link_to part.title, part %><br><span class='desc'><%= part.desc %></span></td>
-      <% if can? :edit, part %>
-      <td><%= link_to 'Edit', edit_part_path(part) %></td>
-      <td><%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% if can? :edit, Part %>
+      <td>
+        <a href="<%=edit_part_path(part)%>" class="btn btn-primary btn-mini"><i class="icon-white icon-edit"></i> edit</a></td>
+      <td><%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-mini btn-danger' %></td>
+      <% else %>
+      <td></td>
+      <td></td>
       <% end %>
     </tr>
     <% end %>
   </table>
 
   <br />
-  <%if isadmin%>
+  <%if can? :new, Part%>
   <%= link_to 'New Part', new_part_path %>
   <%end%>
 </div>

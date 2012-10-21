@@ -15,10 +15,6 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-$(document).ready(function(){
-	$("p").append("<strong>Hello</strong>");
-});
-
 $(document).ready(function() {
 	$("table tr:nth-child(odd)").css("background-color","#dad0ff");
 	$("table tr:nth-child(even)").css("background-color","#fefefe");

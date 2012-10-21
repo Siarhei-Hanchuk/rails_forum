@@ -41,7 +41,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'carrierwave'
 gem 'rmagick'
-gem 'will_paginate', '>= 3.0.pre'
+gem 'will_paginate'
 gem 'mail'
 
 gem 'devise'
@@ -55,10 +55,12 @@ gem 'omniauth-vkontakte'
 
 gem 'cancan'
 
-#gem 'rails_admin'
+gem 'rails_admin'
 
 gem 'less-rails-bootstrap'
 
 gem 'seed_dumper'
 
 gem 'yaml_db'
+
+#gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'

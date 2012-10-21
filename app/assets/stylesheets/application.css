@@ -174,3 +174,10 @@
  	visibility: hidden;
  	display: none;
  }
+
+ .frame{
+ 	padding: 6px;
+ 	margin-bottom: 3px;
+ 	background-color: #EEE;
+ 	border-radius: 6px;
+ }

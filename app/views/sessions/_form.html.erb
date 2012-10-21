@@ -1,7 +1,7 @@
-<div id='login_form'>
+<div id='login_form' class='frame'>
 <% if !session[:user_id] %>
-<%=link_to 'Logged with FaceBook', user_omniauth_authorize_path(:facebook)%>
-<%=link_to 'Logged with vkontakte', user_omniauth_authorize_path(:vkontakte)%>
+<%=link_to 'Login with FaceBook', user_omniauth_authorize_path(:facebook)%><br>
+<%=link_to 'Login with vkontakte', user_omniauth_authorize_path(:vkontakte)%>
 <% else %>
 <% user=User.find(session[:user_id])%>
 <%=image_tag imgurl(user), :class=>'leftimg'%>

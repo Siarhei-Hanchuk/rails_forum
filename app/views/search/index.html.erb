@@ -15,7 +15,16 @@
 	<% end %>
 </table>
 <% else %>
+
+<table id='table'>
+	<tr>
+		<th></th>
+		<th></th>
+	</tr>
 <% @posts=@arr %>
-<% @search=true %>
-<%= render 'topics/post'%>
+	<% @posts.each do |post| %>
+		<% @search=true %>
+		<%= render 'topics/post', post: post%>
+	<% end %>
 <% end %>
+</table>
