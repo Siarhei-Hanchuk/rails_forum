@@ -19,7 +19,7 @@ class Ability
     if user.is? :admin
         can [:index], :Admin
         can [:index, :ban, :delete], User
-        can [:new, :delete, :create, :edit, :update], Part
+        can [:new, :destroy, :create, :edit, :update], Part
 
     end
 
