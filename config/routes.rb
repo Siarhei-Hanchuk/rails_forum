@@ -2,13 +2,13 @@ Forum3::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  get "dashboard/index"
+  #get "dashboard/index"
 
-  resources :comments
+  
 
-  #get "omniauth_callbacks/vkontakte"
+  get "omniauth_callbacks/vkontakte"
 
-  #get "omniauth_callbacks/facebook"
+  get "omniauth_callbacks/facebook"
 
   get "newpost/index"
 
@@ -29,9 +29,13 @@ Forum3::Application.routes.draw do
 
   resources :topics
 
+  resources :comments
+
+  resources :users
+
   get '/users/ban' => 'users#ban'
   get '/users/unban' => 'users#unban'
-  resources :users
+  
 
   controller :sessions do
     get 'login' => :new
@@ -121,11 +125,9 @@ Forum3::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-
   match ':controller(/:action(/:id(.:format)))'
 
-  resources :comments
+  
 
   Forum3::Application.routes.draw do
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

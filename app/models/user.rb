@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
   has_many :topics
   has_many :posts  
   has_many :comments
-
   has_many :likes
 
   def self.find_for_facebook_oauth access_token
