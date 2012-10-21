@@ -156,26 +156,3 @@
  	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.99);
  	-webkit-font-smoothing: antialiased;
  }
-
- .center_text{
- 	text-align: center;
- }
-
- #login_form2{
- 	background-color: green;
- }
-
- .left_text{
- 	text-align: left;
- }
-
- .comment{
- 	float: right;
- }
-
- .frame{
- 	padding: 6px;
- 	margin-bottom: 3px;
- 	background-color: #EEE;
- 	border-radius: 6px;
- }
