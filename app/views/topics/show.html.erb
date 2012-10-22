@@ -3,8 +3,6 @@
 <%if can? :edit, Topic%>
 <%= link_to 'Edit', edit_topic_path(@topic) %>
 <%end%>
-<%@posts=@topic.posts.paginate :page=>params[:page], :per_page=>5 %>
-<p><%= will_paginate @posts%></p>
 
 <div class='desc'>
 	<b>Part:</b>
@@ -17,7 +15,7 @@
 	<%end%>
 </div>
 
-
+<p><%= paginate @posts %></p>
 <table id='table'>
 	<tr>
 		<th></th>
@@ -27,8 +25,7 @@
 		<%= render 'post', :post=>post%>
 	<% end %>
 </table>
-
-<p><%= will_paginate @posts%></p>
+<p><%= paginate @posts %></p>
 <!-- <button id='b_b'>b</button> -->
 <% @post=Post.new %>
 <%= form_for(@post) do |f| %>

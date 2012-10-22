@@ -38,10 +38,10 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
-    if !(isadmin ||session[:user_id]==@post.user_id)
-      redirect_to '/topics/'+@post.topic_id.to_s, notice: "You don't have permission to edit"
-      return nil
-    end
+    #if !(session[:user_id]==@post.user_id)
+    #  redirect_to '/topics/'+@post.topic_id.to_s, notice: "You don't have permission to edit"
+    #  return nil
+    #end
   end
 
   # POST /posts

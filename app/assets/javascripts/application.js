@@ -34,6 +34,7 @@ $(document).ready(function() {
 		        title:'Likes:',
 		        content: data
     		});
+    		//alert(data)
     		$('.like').popover('show');
 
 			/*$('<div class="likes_list"></div>').css({

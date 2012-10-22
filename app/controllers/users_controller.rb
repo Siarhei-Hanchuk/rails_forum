@@ -35,7 +35,18 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if !session[:user_id]
+      redirect_to '/', notice: 'access'
+      return 
+    end
     @user = User.find(params[:id])
+    current_user=User.find(session[:user_id])
+    
+    if !(current_user.is? :admin || current_user.id==@user.id)
+      redirect_to '/', notice: 'access'
+      return 
+    end
+
   end
 
   # POST /users

@@ -7,7 +7,9 @@ class PartsController < ApplicationController
   # GET /parts
   # GET /parts.json
   def index
-    @parts = Part.all
+    @parts = Part.all.sort { |a,b|
+      a.sort<=>b.sort
+    }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,13 +21,14 @@ class PartsController < ApplicationController
   # GET /parts/1.json
   def show
     @part = Part.find(params[:id])
-    #@topics=@part.topics
+    @topics=@part.topics
 
-    #@topics.sort! {|b,a|
-    #  a.posts.last.updated_at <=> b.posts.last.updated_at
-    #}
-    #@topics=@topics.paginate :page=>params[:page], :per_page=>5
-    @topics=@part.topics.paginate :page=>params[:page], :per_page=>5
+    @topics.sort! {|b,a|
+      a.posts.last.updated_at <=> b.posts.last.updated_at
+    }
+
+    @topics=Kaminari.paginate_array(@topics).page(params[:page]).per(5)
+    #@topics=@part.topics.
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @part }

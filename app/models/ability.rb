@@ -6,13 +6,12 @@ class Ability
     can [:index,:show], Part 
     can [:show], Topic
 
-    can [:edit, :update], Post
-
     if user.is? :user
         can [:new, :create], Comment
         can [:show,:new,:create], Topic
         can [:new, :create], Post
-        can [:show,:edit,:update], User
+        can [:edit, :update], Post, :user_id=>user.id
+        can [:show,:edit,:update], User, :id=>user.id
     end
 
     if user.is? :moder
@@ -24,6 +23,8 @@ class Ability
         can [:index], :Admin
         can [:index, :ban, :delete], User
         can [:new, :destroy, :create, :edit, :update], Part
+        can [:edit, :update], Post
+        can [:show, :edit, :update], User
     end
 
     #can :new, Topic if user.is? :user
