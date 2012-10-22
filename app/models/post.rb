@@ -9,4 +9,13 @@ class Post < ActiveRecord::Base
 	validates :body, :topic_id, :user_id, :presence => true
 	validates :body, :length=> {:maximum => 250}
 
+	def body=(body)
+		body.gsub! /\n/, '<br>'
+		write_attribute(:body,body)
+	end
+
+	#def body
+	#	read_attribute(:body)
+	#end
+
 end

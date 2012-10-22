@@ -28,6 +28,8 @@
 <p><%= paginate @posts %></p>
 <!-- <button id='b_b'>b</button> -->
 <% @post=Post.new %>
+<% if can? :new, Post %>
+<%= render 'panel'%>
 <%= form_for(@post) do |f| %>
 <% if @post.errors.any? %>
 <div id="error_explanation">
@@ -39,9 +41,10 @@
 	</ul>
 </div>
 <% end %>
-<% if can? :new, Post %>
+
+
 <div class="field">
-	<%= f.text_area :body, :cols => 60, :rows => 10, :class => 'app_input',  :class=>'field span7'%>
+	<%= f.text_area :body, :cols => 60, :rows => 10, :class => 'app_input',  :class=>'field span7', :id=>'new_topic_text'%>
 </div>
 <%= f.hidden_field :topic_id, :value=>@topic.id %>
 <div class="actions">

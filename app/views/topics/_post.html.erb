@@ -16,7 +16,7 @@
 			<%if @search==true%>
 			<%=link_to 'Turn to topic', '/topics/'+post.topic_id.to_s+'#'+post.id.to_s %><br>
 			<%end%>
-			<%=post.body%><br>
+			<%=sanitize post.body, :tags => %w(br img b i a) %><br>
 		</div>
 		<div class='msg_body_d'>
 			Posted at <%= to_date post.created_at %>,

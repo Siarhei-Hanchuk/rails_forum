@@ -11,6 +11,11 @@ end
 
 module Forum3
   class Application < Rails::Application
+
+    #config.after_initialize do
+    #    ActionView::Base.sanitized_allowed_tags.delete 'div'
+    #end
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -58,5 +63,5 @@ module Forum3
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-  end
+end
 end

@@ -21,6 +21,19 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+	$('#btn_img').click(function(){
+		$('#new_topic_text').val($('#new_topic_text').val()+'<img src=""></img>');
+	});
+	$('#btn_url').click(function(){
+		$('#new_topic_text').val($('#new_topic_text').val()+'<a href=""></a>');
+	});
+	$('#btn_bold').click(function(){
+		$('#new_topic_text').val($('#new_topic_text').val()+'<b></b>');
+	});
+	$('#btn_italic').click(function(){
+		$('#new_topic_text').val($('#new_topic_text').val()+'<i></i>');
+	});
+
 	$('#b_b').click(function(){
 		$('.app_input').text($('.app_input').text()+'[b]');
 	});
