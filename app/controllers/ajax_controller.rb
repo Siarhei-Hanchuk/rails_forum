@@ -34,10 +34,10 @@ class AjaxController < ActionController::Base
     	@out="";
     	@post=Post.find(params[:post_id])
     	@post.likes.all.each { |q|
-			@out+=(User.find(q.user_id).login+', ')
+			@out+=(User.find(q.user_id).username+', ')
 		}
-		@out[-2..-1]='  '
-
+		
+		@out[-2..-1]='  ' if @out.size>3
 		respond_to do |format|
       		format.html
       		format.json { render json: @users }

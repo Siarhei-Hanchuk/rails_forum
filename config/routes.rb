@@ -2,10 +2,6 @@ Forum3::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  #get "dashboard/index"
-
-  
-
   get "omniauth_callbacks/vkontakte"
 
   get "omniauth_callbacks/facebook"
@@ -126,8 +122,6 @@ Forum3::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   match ':controller(/:action(/:id(.:format)))'
-
-  
 
   Forum3::Application.routes.draw do
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

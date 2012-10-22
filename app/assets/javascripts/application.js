@@ -28,16 +28,25 @@ $(document).ready(function() {
 	$('.like').mouseenter(function(event){
 		post_id=event.target.id;
 		$.get('/ajax/like_logins?post_id='+post_id,function(data){
-			$('<div class="likes_list"></div>').css({
+			//alert(data);
+			$('.like').popover({
+        		placement: 'top',
+		        title:'Likes:',
+		        content: data
+    		});
+    		$('.like').popover('show');
+
+			/*$('<div class="likes_list"></div>').css({
 				position: 'absolute',
 				left: event.pageX,
 				top: event.pageY,
 				cursor: 'pointer',
-			}).html(data).appendTo('body');
+			}).html(data).appendTo('body');*/
 		});		
 	});
 
 	$('.like').mouseleave(function(event){
+		$('.like').popover('hide');
 		$(".likes_list").remove();
 	});
 
@@ -73,6 +82,7 @@ $(document).ready(function() {
 	$('.like').click(function(invoker){
 		post_id=invoker.target.id;
 		$.get('/ajax/?post_id='+post_id,function(data){
+			alert(data);
 			if(data=='+'){
 				$('#'+post_id+'.like').removeClass('like_m').addClass('like_p');
 			}
@@ -82,4 +92,3 @@ $(document).ready(function() {
 		});
 	});
 });
-

@@ -2,9 +2,11 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    #can [:index], '/search/'
+    can [:index], :Search
     can [:index,:show], Part 
     can [:show], Topic
+
+    can [:edit, :update], Post
 
     if user.is? :user
         can [:new, :create], Comment
@@ -22,11 +24,10 @@ class Ability
         can [:index], :Admin
         can [:index, :ban, :delete], User
         can [:new, :destroy, :create, :edit, :update], Part
-
     end
 
     #can :new, Topic if user.is? :user
-        
+
     #can :create, Topic
     #can :index, SearchController if user.is? :admin
 

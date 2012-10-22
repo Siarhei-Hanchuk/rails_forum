@@ -41,7 +41,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'carrierwave'
 gem 'rmagick'
-gem 'will_paginate'
+#gem 'will_paginate'
+#gem 'kaminari'
 gem 'mail'
 
 gem 'devise'
