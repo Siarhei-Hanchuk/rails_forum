@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.delete_all
-u1=User.create(:username=>'username',:nickname=>'nickname', :provider=>'facebook', :url=>'facebook.com',:email=>'siarheihanchuk@gmail.com');
+#User.delete_all
+#u1=User.create(:username=>'username',:nickname=>'nickname', :provider=>'facebook', :url=>'facebook.com',:email=>'siarheihanchuk@gmail.com');
 #u2=User.create(:nickname=>'root', :password=>'root', :email=>'siarheihanchuk@gmail.com');
 
 #Part.delete_all

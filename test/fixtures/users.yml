@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  username: MyString
-  nickname: MyString
-  provider: MyString
-  url: MyString
+  username: user1
+  nickname: nick1
+  provider: facebook
+  url: facebook.com
+  email: sh@gamil.com
 
 two:
-  username: MyString
-  nickname: MyString
-  provider: MyString
-  url: MyString
+  username: user2
+  nickname: nick2
+  provider: vkontakte
+  url: vk.com
+  email: ololo@gamil.com

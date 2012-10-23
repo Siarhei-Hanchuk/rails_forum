@@ -17,5 +17,4 @@ class Post < ActiveRecord::Base
 	#def body
 	#	read_attribute(:body)
 	#end
-
 end
