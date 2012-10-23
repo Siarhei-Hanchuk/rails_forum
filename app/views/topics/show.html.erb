@@ -29,7 +29,7 @@
 <!-- <button id='b_b'>b</button> -->
 <% @post=Post.new %>
 <% if can? :new, Post %>
-<%= render 'newpost/panel'%>
+<%= render 'panel'%>
 <%= form_for(@post) do |f| %>
 <% if @post.errors.any? %>
 <div id="error_explanation">
