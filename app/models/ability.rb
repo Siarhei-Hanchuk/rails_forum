@@ -15,13 +15,14 @@ class Ability
     end
 
     if user.is? :moder
-        can [:destroy, :update, :edit], Comment
+        can [:edit, :update, :destroy], Comment
         can [:edit, :update, :destroy], Topic
+        can [:edit, :update, :destroy], Post
     end
 
     if user.is? :admin
         can [:index], :Admin
-        can [:index, :ban, :delete], User
+        can [:index, :ban, :destroy], User
         can [:new, :destroy, :create, :edit, :update], Part
         can [:edit, :update], Post
         can [:show, :edit, :update], User
