@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  #skip_before_filter :is_admin
-  #load_and_authorize_resource
   load_and_authorize_resource
   # GET /posts
   # GET /posts.json
@@ -55,7 +53,8 @@ class PostsController < ApplicationController
     @post.user_id=session[:user_id]
     respond_to do |format|
       if @post.save
-        format.html { redirect_to '/topics/'+@post.topic_id.to_s, notice: 'Post was successfully created.' }
+        format.html { redirect_to '/topics/'+@post.topic_id.to_s+'?page='+((@post.topic.posts.count-1)/post_per_page+1).to_s+'#'+@post.id.to_s, notice: 'Post was successfully created.' }
+        #
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }

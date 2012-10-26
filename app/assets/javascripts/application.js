@@ -42,25 +42,25 @@ $(document).ready(function() {
 		post_id=event.target.id;
 		$.get('/ajax/like_logins?post_id='+post_id,function(data){
 			//alert(data);
-			$('.like').popover({
+			/*$('.like').popover({
         		placement: 'top',
 		        title:'Likes:',
 		        content: data
-    		});
+    		});*/
     		//alert(data)
-    		$('.like').popover('show');
+    		//$('.like').popover('show');
 
-			/*$('<div class="likes_list"></div>').css({
+			$('<div class="likes_list"></div>').css({
 				position: 'absolute',
 				left: event.pageX,
 				top: event.pageY,
 				cursor: 'pointer',
-			}).html(data).appendTo('body');*/
+			}).html(data).appendTo('body');
 		});		
 	});
 
 	$('.like').mouseleave(function(event){
-		$('.like').popover('hide');
+		//$('.like').popover('hide');
 		$(".likes_list").remove();
 	});
 
@@ -79,6 +79,7 @@ $(document).ready(function() {
 		function(data){
 			//alert(data)
 			$('#send_comment'+id).before('<div>'+data+'</div>');
+			$('#comment_input'+id).val('');
 		}
 		);
 	});
@@ -96,7 +97,7 @@ $(document).ready(function() {
 	$('.like').click(function(invoker){
 		post_id=invoker.target.id;
 		$.get('/ajax/?post_id='+post_id,function(data){
-			alert(data);
+			//alert(data);
 			if(data=='+'){
 				$('#'+post_id+'.like').removeClass('like_m').addClass('like_p');
 			}

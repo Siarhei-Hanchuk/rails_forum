@@ -20,11 +20,11 @@ RailsAdmin.config do |config|
   }
 
   config.authorize_with{
-    if session[:user_id]
-    	redirect_to '/', :alert => "You are not authorized to access that page" unless User.find(session[:user_id]).is? "admin"
-    else
-      redirect_to '/', :alert => "You are not authorized to access that page"
+    if ! (session[:user_id] && (User.find(session[:user_id]).is? :admin))
+    	redirect_to '/', :alert => "You are not authorized to access that page1"
     end
+      #redirect_to '/', :alert => "You are not authorized to access that page2"
+    #end
   }
 
   # If you want to track changes on your models:

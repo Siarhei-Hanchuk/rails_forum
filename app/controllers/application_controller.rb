@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 	#before_filter :authenticate_user!, :only => [:new]
 	#skip_authorize_resource :only => :new
 
+	def post_per_page
+		5
+	end
+
 	private
 	def current_ability
 		if session[:user_id] && User.exists?(session[:user_id])

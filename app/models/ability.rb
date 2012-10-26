@@ -7,11 +7,14 @@ class Ability
     can [:show], Topic
 
     if user.is? :user
+        can [:index], :Newpost
         can [:new, :create], Comment
         can [:show,:new,:create], Topic
         can [:new, :create], Post
         can [:edit, :update], Post, :user_id=>user.id
         can [:show,:edit,:update], User, :id=>user.id
+
+        can [:show, :edit, :update], User
     end
 
     if user.is? :moder
@@ -26,6 +29,12 @@ class Ability
         can [:new, :destroy, :create, :edit, :update], Part
         can [:edit, :update], Post
         can [:show, :edit, :update], User
+    end
+
+    if user.is? :banned
+        cannot [:new, :create], Post
+        cannot [:new, :create], Topic
+        cannot [:new, :create], Post
     end
 
     #can :new, Topic if user.is? :user

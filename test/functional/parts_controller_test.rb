@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class PartsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @part = parts(:one)
   end
@@ -17,6 +19,9 @@ class PartsControllerTest < ActionController::TestCase
   end
 
   test "should create part" do
+    @user = users(:one)
+    @user.roles<<"admin"
+    sign_in @user
     assert_difference('Part.count') do
       post :create, part: { desc: @part.desc, title: @part.title }
     end

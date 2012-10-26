@@ -1,6 +1,4 @@
 class TopicsController < ApplicationController
-  #skip_before_filter :authorize, :only => [:index, :show]
-  #skip_before_filter :is_admin
   load_and_authorize_resource
 
   # GET /topics

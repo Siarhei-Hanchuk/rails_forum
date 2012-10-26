@@ -1,6 +1,11 @@
 class NewpostController < ApplicationController
-	skip_before_filter :is_admin
+	#authorize_resource :class => false
+	
 	def index
+		if cannot? :index, :Newpost
+			redirect_to '/', notice: 'Access'	
+			return
+		end	
 		@body=params[:body]
 		@title=params[:title]
 		@part_id=params[:part].keys[0]

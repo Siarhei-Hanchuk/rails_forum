@@ -41,25 +41,22 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'carrierwave'
 gem 'rmagick'
-#gem 'will_paginate'
 gem 'kaminari'
 gem 'mail'
 
-gem 'devise'
-
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
-gem 'devise'
+gem 'less-rails-bootstrap'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 
+gem 'devise'
 gem 'cancan'
-
 gem 'rails_admin'
 
-gem 'less-rails-bootstrap'
+
 
 #gem 'seed_dumper'
-
 #gem 'yaml_db'

@@ -6,6 +6,8 @@ one:
   provider: facebook
   url: facebook.com
   email: sh@gamil.com
+  roles_mask: 11
+
 
 two:
   username: user2

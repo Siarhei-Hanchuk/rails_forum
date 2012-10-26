@@ -24,7 +24,8 @@
   </div>
   <% end %>
 </div>
-<%= link_to 'Ban', '/users/ban?user_id='+@user.id.to_s %>
+<% if can? :ban, User %>
+<%= link_to 'Ban', '/users/ban?role='+:banned.to_s+'&user_id='+@user.id.to_s %>
 <div class='span3'>
   <% for role in User::ROLES %>
   <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
@@ -34,3 +35,4 @@
   <% end %>
   <%= hidden_field_tag "user[roles][]", "" %>
 </div>
+<% end %>
