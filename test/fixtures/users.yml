@@ -15,3 +15,4 @@ two:
   provider: vkontakte
   url: vk.com
   email: ololo@gamil.com
+  roles_mask: 8

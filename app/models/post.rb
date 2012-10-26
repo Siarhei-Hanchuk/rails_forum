@@ -3,11 +3,11 @@ class Post < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :topic
-	has_many :likes
-	has_many :comments
+	has_many :likes, :dependent => :destroy
+	has_many :comments, :dependent => :destroy
 
 	validates :body, :topic_id, :user_id, :presence => true
-	validates :body, :length=> {:maximum => 250}
+	validates :body, :length=> {:minimum => 1, :maximum => 250}
 
 	def body=(body)
 		body.gsub! /\n/, '<br>'

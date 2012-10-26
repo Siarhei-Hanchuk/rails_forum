@@ -2,7 +2,15 @@
 	<td class='msg_user'>
 		<%if post.user%>
 		<b><%= post.user.username %></b><br>
-		<%= 'Admin' %>
+		<% if post.user.is? :banned %>
+		<%= 'Banned'%>
+		<% elsif post.user.is? :admin %>
+		<%= 'Admin'%>
+		<% elsif post.user.is? :moder %>
+		<%= 'Moderator'%>
+		<% elsif post.user.is? :user %>
+		<%= 'User'%>
+		<% end %>
 		<%= image_tag imgurl(post.user), :width=>100%>
 		Posts: <%= post.user.posts.count %><br>
 		Date: <%= to_date post.user.created_at %>

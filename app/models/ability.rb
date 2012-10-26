@@ -13,8 +13,6 @@ class Ability
         can [:new, :create], Post
         can [:edit, :update], Post, :user_id=>user.id
         can [:show,:edit,:update], User, :id=>user.id
-
-        can [:show, :edit, :update], User
     end
 
     if user.is? :moder

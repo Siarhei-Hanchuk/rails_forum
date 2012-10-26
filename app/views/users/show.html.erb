@@ -1,7 +1,7 @@
 Your profile, <%=@user.username%>:<br>
 Email:<%=@user.email%><br> 
 
-You have <%= @user.posts.count %> posts and <%= @user.topics.count %> topics.<br>
+Have <%= @user.posts.count %> posts, <%= @user.topics.count %> topics and <%= @user.comments.count %> comments.<br>
 Registration date: <%= @user.created_at.to_datetime.to_s.scan(/[\d-]+/)[0] %>:<br>
 
 Avatar:<br>

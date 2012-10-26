@@ -13,7 +13,7 @@
     - @users.each do |user|
       %tr
         %td= link_to user.username, user.url
-        %td= user.nickname
+        %td= link_to user.nickname, '/users/'+user.id.to_s
         %td= user.provider
         %td= user.sign_in_count
         %td= user.created_at

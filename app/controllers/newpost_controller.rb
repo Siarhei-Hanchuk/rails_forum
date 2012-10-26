@@ -9,6 +9,10 @@ class NewpostController < ApplicationController
 		@body=params[:body]
 		@title=params[:title]
 		@part_id=params[:part].keys[0]
+		if @body.length<1
+			redirect_to '/parts/'+@part_id.to_s, notice: 'Body is empty'
+			return
+		end
 		@topic=Topic.new
 		@topic.part_id=@part_id
 		@topic.user_id=session[:user_id]
