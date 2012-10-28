@@ -33,7 +33,6 @@ $(document).ready(function() {
 	$('#btn_italic').click(function(){
 		$('#new_topic_text').val($('#new_topic_text').val()+'<i></i>');
 	});
-
 	$('#b_b').click(function(){
 		$('.app_input').text($('.app_input').text()+'[b]');
 	});
@@ -50,7 +49,7 @@ $(document).ready(function() {
     		//alert(data)
     		//$('.like').popover('show');
 
-    		$('<div class="likes_list"></div>').css({
+    		$('<div class="likes_list btn-like"></div>').css({
     			position: 'absolute',
     			left: event.pageX,
     			top: event.pageY,
@@ -64,11 +63,36 @@ $(document).ready(function() {
 		$(".likes_list").remove();
 	});
 
-	$('.comment_button').click(function(event){
-		id=event.target.id.match(/.*n([0-9]*).*/)[1];
+	function getPostId(event){
+		return event.target.id.match(/.*\^([0-9]*).*/)[1];
+	}
+
+	/*$('.show_comment_button').click(function(event){
+		post_id=getPostId(event);
+		$('send_comment'+post_id).show();
+	});*/
+
+
+	$('.like').click(function(event){
+		post_id=event.target.id;
+		$.get('/ajax/?post_id='+post_id,function(data){
+			data=data.split('\^');
+			//alert(data[0]);
+			if(data[0]=='nil')
+				return;
+			//alert(data[1]);
+			if(data[0]=='-'){
+				$('#'+post_id).removeClass('active').text(data[1]);
+			}
+			if(data[0]=='+'){
+				$('#'+post_id).addClass('active').text(data[1]);
+			}
+		});
+	});
+
+	function send_comment(id){
 		text=$('#comment_input'+id).val();
 		if(text.length<1){
-			//$('<div>Message is empty</div>').appendBefore('#comment_input'+id);
 			return
 		}
 		$.post("/ajax/comment",
@@ -77,39 +101,24 @@ $(document).ready(function() {
 			comment: text
 		},
 		function(data){
-			//alert(data)
 			$('#send_comment'+id).before('<div>'+data+'</div>');
 			$('#comment_input'+id).val('');
 		}
 		);
-	});
-
-	function getPostId(event){
-		return event.target.id.match(/.*\^([0-9]*).*/)[1];
 	}
 
-	$('.show_comment_button').click(function(event){
-		post_id=getPostId(event);
-		$('send_comment'+post_id).show();
-	});
-
-
-	$('.like').click(function(event){
-		post_id=event.target.id;
-		$.get('/ajax/?post_id='+post_id,function(data){
-			//alert(data);
-			if(data=='+'){
-				$('#'+post_id+'.like').removeClass('like_m').addClass('like_p');
-			}
-			if(data=='-'){
-				$('#'+post_id+'.like').removeClass('like_p').addClass('like_m');
-			}
-		});
+	$('.comment_button').click(function(event){
+		send_comment(event.target.id.match(/.*n([0-9]*).*/)[1]);
+		
 	});
 
 	$('.comment_input').keypress(function(event){
+		id=event.target.id.match(/.*t([0-9]*).*/)[1];
+		if((event.ctrlKey) && ((event.keyCode == 0xA)||(event.keyCode == 0xD))){
+			$('#comment_input'+id).val($('#comment_input'+id).val()+'\n');	
+		}
 		if(event.keyCode==13){
-			$('#send_comment'+getPostId(event)).submit();
+			send_comment(id);
 		}
 	});
 });

@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   attr_accessible :nickname, :provider, :url, :username
   attr_accessible :roles, :avatar_cache
   attr_accessible :ava
-  ##########################################################################################
 
   attr_accessible :avatar
   mount_uploader :avatar, AvatarUploader

@@ -34,9 +34,9 @@
 			<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
 			<% end %>
 			<% if liked? post %>
-			<div id='<%=post.id%>' class='btn-like like like_p'> + (<%=post.likes.count%>)</div>
+			<div id='<%=post.id%>' class="btn btn-success btn-small like active"> +(<%=post.likes.count%>)</div>
 			<% else %>
-			<div id='<%=post.id%>' class='btn-like like like_m'> + (<%=post.likes.count%>)</div>
+			<div id='<%=post.id%>' class="btn btn-success btn-small like"> +(<%=post.likes.count%>)</div>
 			<% end %>
 		</div>
 	</td>		
@@ -47,7 +47,6 @@
 <!-- 	 <%= button_tag "comments", :id=>'showComment^'+post.id.to_s, :class=>'show_comment_button' %><br>-->
 	</td>
 	<td>
-		<form id='comment_form<%=post.id%>' class='comment_form'>
 		<div id='comments<%=post.id%>'>
 			<% if post.comments.size>0 %>
 				<% post.comments.each do |comment| %>
