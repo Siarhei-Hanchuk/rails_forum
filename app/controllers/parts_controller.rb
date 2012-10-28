@@ -4,7 +4,7 @@ class PartsController < ApplicationController
   # GET /parts
   # GET /parts.json
   def index
-    #session[:user_id]=4
+    #session[:user_id]=1
     @parts = Part.all.sort { |a,b|
       a.sort<=>b.sort
     }

@@ -1,7 +1,7 @@
 <tr>
 	<td class='msg_user'>
 		<%if post.user%>
-		<b><%= post.user.username %></b><br>
+		<b><%= link_to post.user.username, '/users/'+post.user.id.to_s %></b><br>
 		<% if post.user.is? :banned %>
 		<%= 'Banned'%>
 		<% elsif post.user.is? :admin %>
@@ -34,9 +34,9 @@
 			<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
 			<% end %>
 			<% if liked? post %>
-			<div id='<%=post.id%>' class='btn-like like like_p'> + </div>
+			<div id='<%=post.id%>' class='btn-like like like_p'> + (<%=post.likes.count%>)</div>
 			<% else %>
-			<div id='<%=post.id%>' class='btn-like like like_m'> + </div>
+			<div id='<%=post.id%>' class='btn-like like like_m'> + (<%=post.likes.count%>)</div>
 			<% end %>
 		</div>
 	</td>		
@@ -47,6 +47,7 @@
 <!-- 	 <%= button_tag "comments", :id=>'showComment^'+post.id.to_s, :class=>'show_comment_button' %><br>-->
 	</td>
 	<td>
+		<form id='comment_form<%=post.id%>' class='comment_form'>
 		<div id='comments<%=post.id%>'>
 			<% if post.comments.size>0 %>
 				<% post.comments.each do |comment| %>
@@ -56,10 +57,10 @@
 			<%if can? :new, Comment %>
 			<div id='send_comment<%=post.id%>' class=''>
 				<div class='comment span6'>
-					<%= text_area_tag :body, params[:body], :rows=>3, :id=>'comment_input'+post.id.to_s,
-					:class=>'field span4'%><br>
-				</div>
-				<%= button_tag "comment", :id=>'comment_button'+post.id.to_s, :class=>'comment_button' %><br>
+					<%= text_area_tag :body, params[:body], :rows=>1, :id=>'comment_input'+post.id.to_s,
+					:class=>'field span4 comment_input'%>
+					<%= button_tag "comment", :id=>'comment_button'+post.id.to_s, :class=>'comment_button' %><br>
+				</div>				
 			</div>
 			<%end%>
 		</div>

@@ -46,17 +46,17 @@ $(document).ready(function() {
         		placement: 'top',
 		        title:'Likes:',
 		        content: data
-    		});*/
+		    });*/
     		//alert(data)
     		//$('.like').popover('show');
 
-			$('<div class="likes_list"></div>').css({
-				position: 'absolute',
-				left: event.pageX,
-				top: event.pageY,
-				cursor: 'pointer',
-			}).html(data).appendTo('body');
-		});		
+    		$('<div class="likes_list"></div>').css({
+    			position: 'absolute',
+    			left: event.pageX,
+    			top: event.pageY,
+    			cursor: 'pointer',
+    		}).html(data).appendTo('body');
+    	});		
 	});
 
 	$('.like').mouseleave(function(event){
@@ -94,8 +94,8 @@ $(document).ready(function() {
 	});
 
 
-	$('.like').click(function(invoker){
-		post_id=invoker.target.id;
+	$('.like').click(function(event){
+		post_id=event.target.id;
 		$.get('/ajax/?post_id='+post_id,function(data){
 			//alert(data);
 			if(data=='+'){
@@ -105,5 +105,11 @@ $(document).ready(function() {
 				$('#'+post_id+'.like').removeClass('like_p').addClass('like_m');
 			}
 		});
+	});
+
+	$('.comment_input').keypress(function(event){
+		if(event.keyCode==13){
+			$('#send_comment'+getPostId(event)).submit();
+		}
 	});
 });

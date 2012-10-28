@@ -2,9 +2,9 @@ Forum3::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  get "omniauth_callbacks/vkontakte"
+  #get "omniauth_callbacks/vkontakte"
 
-  get "omniauth_callbacks/facebook"
+  #get "omniauth_callbacks/facebook"
 
   get "newpost/index"
 

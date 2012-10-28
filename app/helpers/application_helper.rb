@@ -22,6 +22,7 @@ module ApplicationHelper
 	end
 
 	def imgurl user, thumb=false
+		return user.ava if user.ava
 		return '/ava.png' if !user.avatar
 		return user.avatar.thumb if user.avatar.url && thumb
 		return user.avatar.url if user.avatar.url

@@ -19,6 +19,18 @@ RailsAdmin.config do |config|
   	#end
   }
 
+  config.model User do
+    object_label_method do
+      :username
+    end
+  end
+
+  config.model Post do
+    object_label_method do
+      :body
+    end
+  end
+
   config.authorize_with{
     if ! (session[:user_id] && (User.find(session[:user_id]).is? :admin))
     	redirect_to '/', :alert => "You are not authorized to access that page1"

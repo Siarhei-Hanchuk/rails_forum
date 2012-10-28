@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :nickname, :provider, :url, :username
   attr_accessible :roles, :avatar_cache
+  attr_accessible :ava
 
   attr_accessible :avatar
   mount_uploader :avatar, AvatarUploader
@@ -20,13 +21,25 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :likes
 
+  def self.find_for_google_oauth access_token
+    if user = User.where(:url => access_token[:link]).first
+      user
+    else 
+      User.create!(:provider => 'google_oauth2', :url => access_token[:link],
+        :username => access_token[:name], :nickname => access_token[:name],
+        :email => access_token[:email], :password => Devise.friendly_token[0,20],
+        :ava => access_token[:picture])
+    end
+  end
+
   def self.find_for_facebook_oauth access_token
     if user = User.where(:url => access_token.info.urls.Facebook).first
       user
     else 
       User.create!(:provider => access_token.provider, :url => access_token.info.urls.Facebook, 
         :username => access_token.extra.raw_info.name, :nickname => access_token.extra.raw_info.username,
-        :email => access_token.extra.raw_info.email, :password => Devise.friendly_token[0,20])
+        :email => access_token.extra.raw_info.email, :password => Devise.friendly_token[0,20],
+        :ava=>access_token.info.image)
     end
   end
 
@@ -36,7 +49,8 @@ class User < ActiveRecord::Base
     else 
       User.create!(:provider => access_token.provider, :url => access_token.info.urls.Vkontakte,
         :username => access_token.info.name, :nickname => access_token.extra.raw_info.domain,
-        :email => access_token.extra.raw_info.domain+'@vk.com', :password => Devise.friendly_token[0,20]) 
+        :email => access_token.extra.raw_info.domain+'@vk.com', :password => Devise.friendly_token[0,20],
+        :ava=>access_token.extra.raw_info.photo_big)
     end
   end
 

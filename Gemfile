@@ -51,12 +51,12 @@ gem 'less-rails-bootstrap'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-github'
 
 gem 'devise'
 gem 'cancan'
 gem 'rails_admin'
 
 
-
-#gem 'seed_dumper'
-#gem 'yaml_db'
+gem "fog", "~> 1.3.1"

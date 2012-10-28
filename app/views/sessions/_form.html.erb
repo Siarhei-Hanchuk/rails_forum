@@ -1,10 +1,11 @@
 <div id='login_form' class='frame'>
 <% if !session[:user_id] %>
 <%=link_to 'Login with FaceBook', user_omniauth_authorize_path(:facebook)%><br>
+<%=link_to 'Login with Google', user_omniauth_authorize_path(:google_oauth2)%><br>
 <%=link_to 'Login with vkontakte', user_omniauth_authorize_path(:vkontakte)%>
 <% else %>
 <% user=User.find(session[:user_id])%>
-<%=image_tag imgurl(user), :class=>'leftimg'%>
+<%=image_tag imgurl(user), :class=>'leftimg', :width=>100, :height=>100%>
 <br>
 You are logged as <%= link_to user.username, '/users/'+user.id.to_s %>,
 <%= link_to 'Exit','/sessions/destroy'%><br>
