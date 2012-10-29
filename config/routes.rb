@@ -6,17 +6,10 @@ Forum3::Application.routes.draw do
 
   post '/topics/create'
   resources :topics
-  post '/topics/create'
-
-  resources :comments
 
   get '/users/sing_out' => 'users#sing_out'
   get '/users/change_role' => 'users#change_role'
   resources :users
-
-  controller :sessions do
-    get "sessions/destroy"
-  end
 
   controller :search do
     post 'search/index' => :index
