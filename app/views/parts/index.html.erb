@@ -4,7 +4,9 @@
   <table id='table'>
     <tr>
       <th class='left_text'>Part name</th>
+      <% if can? :edit, Part %>
       <th class='action_column'></th>
+      <% end %>
     </tr>
     <% @parts.each do |part| %>
     <tr>
@@ -12,10 +14,8 @@
       <% if can? :edit, Part %>
       <td>
         <a href="<%=edit_part_path(part)%>" class="btn btn-primary btn-mini"> edit</a>
-      <%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-mini btn-danger' %></td>
-      <% else %>
-      <td></td>
-      <td></td>
+      <%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-mini btn-danger' %>
+      </td>
       <% end %>
     </tr>
     <% end %>
