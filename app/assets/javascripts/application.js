@@ -36,20 +36,17 @@ $(document).ready(function() {
 	$('#b_b').click(function(){
 		$('.app_input').text($('.app_input').text()+'[b]');
 	});
+});
+
+$(document).ready(function() {
+	function getPostId(event){
+		return event.target.id.match(/.*-([0-9]*).*/)[1];
+	}
 
 	$('.like').mouseenter(function(event){
-		post_id=event.target.id;
+		post_id=getPostId(event);
 		$.get('/ajax/like_logins?post_id='+post_id,function(data){
-			//alert(data);
-			/*$('.like').popover({
-        		placement: 'top',
-		        title:'Likes:',
-		        content: data
-		    });*/
-    		//alert(data)
-    		//$('.like').popover('show');
-
-    		$('<div class="likes_list btn-like"></div>').css({
+    		$('<div class="likes_list"></div>').css({
     			position: 'absolute',
     			left: event.pageX,
     			top: event.pageY,
@@ -59,39 +56,26 @@ $(document).ready(function() {
 	});
 
 	$('.like').mouseleave(function(event){
-		//$('.like').popover('hide');
 		$(".likes_list").remove();
 	});
 
-	function getPostId(event){
-		return event.target.id.match(/.*\^([0-9]*).*/)[1];
-	}
-
-	/*$('.show_comment_button').click(function(event){
-		post_id=getPostId(event);
-		$('send_comment'+post_id).show();
-	});*/
-
-
 	$('.like').click(function(event){
-		post_id=event.target.id;
-		$.get('/ajax/?post_id='+post_id,function(data){
+		post_id=getPostId(event);
+		$.get('/ajax/like?post_id='+post_id,function(data){
 			data=data.split('\^');
-			//alert(data[0]);
 			if(data[0]=='nil')
 				return;
-			//alert(data[1]);
 			if(data[0]=='-'){
-				$('#'+post_id).removeClass('active').text(data[1]);
+				$('#like_btn-'+post_id).removeClass('active').text(data[1]);
 			}
 			if(data[0]=='+'){
-				$('#'+post_id).addClass('active').text(data[1]);
+				$('#like_btn-'+post_id).addClass('active').text(data[1]);
 			}
 		});
 	});
 
 	function send_comment(id){
-		text=$('#comment_input'+id).val();
+		text=$('#comment_input-'+id).val();
 		if(text.length<1){
 			return
 		}
@@ -101,24 +85,24 @@ $(document).ready(function() {
 			comment: text
 		},
 		function(data){
-			$('#send_comment'+id).before('<div>'+data+'</div>');
-			$('#comment_input'+id).val('');
+			$('#send_comment-'+id).before('<div>'+data+'</div>');
+			$('#comment_input-'+id).val('');
 		}
 		);
 	}
 
 	$('.comment_button').click(function(event){
-		send_comment(event.target.id.match(/.*n([0-9]*).*/)[1]);
+		send_comment(getPostId(event));
 		
 	});
 
 	$('.comment_input').keypress(function(event){
-		id=event.target.id.match(/.*t([0-9]*).*/)[1];
-		if((event.ctrlKey) && ((event.keyCode == 0xA)||(event.keyCode == 0xD))){
-			$('#comment_input'+id).val($('#comment_input'+id).val()+'\n');	
-		}
+		post_id=getPostId(event);
+		/*if((event.ctrlKey) && ((event.keyCode == 0xA)||(event.keyCode == 0xD))){
+			$('#comment_input-'+id).val($('#comment_input-'+id).val()+'\n');	
+		}*/
 		if(event.keyCode==13){
-			send_comment(id);
+			send_comment(post_id);
 		}
 	});
 });

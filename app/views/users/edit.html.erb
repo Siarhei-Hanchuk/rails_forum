@@ -24,13 +24,13 @@
   </div>
   <% end %>
 </div>
-<% if can? :ban, User %>
-<%= link_to 'Ban', '/users/ban?role='+:banned.to_s+'&user_id='+@user.id.to_s %>
+<% if can? :change_role, User %>
+<%= link_to 'Ban', '/users/change_role?role='+:banned.to_s+'&user_id='+@user.id.to_s %>
 <div class='span3'>
   <% for role in User::ROLES %>
   <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
   <%= label_tag "user_roles_#{role}", role.humanize %>
-  <%= link_to "change role", '/users/ban?role='+role+'&user_id='+@user.id.to_s%>
+  <%= link_to "change role", '/users/change_role?role='+role+'&user_id='+@user.id.to_s%>
   <br>
   <% end %>
   <%= hidden_field_tag "user[roles][]", "" %>

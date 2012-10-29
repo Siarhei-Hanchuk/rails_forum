@@ -4,16 +4,15 @@
   <table id='table'>
     <tr>
       <th class='left_text'>Part name</th>
-      <th></th>
-      <th></th>
+      <th class='action_column'></th>
     </tr>
     <% @parts.each do |part| %>
     <tr>
       <td><%= link_to part.title, part %><br><span class='desc'><%= part.desc %></span></td>
       <% if can? :edit, Part %>
       <td>
-        <a href="<%=edit_part_path(part)%>" class="btn btn-primary btn-mini"><i class="icon-white icon-edit"></i> edit</a></td>
-      <td><%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-mini btn-danger' %></td>
+        <a href="<%=edit_part_path(part)%>" class="btn btn-primary btn-mini"> edit</a>
+      <%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-mini btn-danger' %></td>
       <% else %>
       <td></td>
       <td></td>

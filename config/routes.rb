@@ -1,57 +1,30 @@
 Forum3::Application.routes.draw do
 
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-
-  #get "omniauth_callbacks/vkontakte"
-
-  #get "omniauth_callbacks/facebook"
-
-  get "newpost/index"
-
-  get "search/index"
-
-  get "sessions/new"
-
-  get "sessions/create"
-
-  get "sessions/destroy"
-
-  get '/users/ban' => 'users#ban'
-  get '/users/unban' => 'users#unban'
-
   resources :posts
 
   resources :parts
 
+  post '/topics/create'
   resources :topics
+  post '/topics/create'
 
   resources :comments
 
+  get '/users/sing_out' => 'users#sing_out'
+  get '/users/change_role' => 'users#change_role'
   resources :users
 
-  get '/users/ban' => 'users#ban'
-  get '/users/unban' => 'users#unban'
-  
-
   controller :sessions do
-    get 'login' => :new
-    post 'sessions/new' => :create
-    delete 'logout' => :destroy
+    get "sessions/destroy"
   end
 
   controller :search do
     post 'search/index' => :index
   end
 
-  controller :newpost do
-    post 'newpost/index' => :index
-  end
-
-  match '/register' => 'users#new'
-
   controller :ajax do
-    get '/ajax' => :index
-    get '/ajax/like_logins' => :like_logins
+    get '/ajax/like' => :like
+    get '/ajax/like_logins' =>  :like_logins
     post '/ajax/comment' => :comment
   end
 
@@ -111,7 +84,6 @@ Forum3::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'parts#index'
-  #get '/admin' => "rails_admin/main#index"
 
   # See how all your routes lay out with "rake routes"
 
@@ -120,8 +92,6 @@ Forum3::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-
-  match ':controller(/:action(/:id(.:format)))'
 
   Forum3::Application.routes.draw do
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

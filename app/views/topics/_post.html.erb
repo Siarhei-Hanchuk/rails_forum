@@ -33,20 +33,17 @@
 			<%= link_to 'Edit', edit_post_path(post) %>,
 			<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
 			<% end %>
-			<% if liked? post %>
-			<div id='<%=post.id%>' class="btn btn-success btn-small like active"> +(<%=post.likes.count%>)</div>
-			<% else %>
-			<div id='<%=post.id%>' class="btn btn-success btn-small like"> +(<%=post.likes.count%>)</div>
-			<% end %>
+			<div id='like_btn-<%=post.id%>' class="btn btn-success btn-small like <%='active' if liked? post %> "> +(<%=post.likes.count%>)</div>
 		</div>
 	</td>		
 </tr>
 <% if !@search %>
 <tr>
 	<td>
-<!-- 	 <%= button_tag "comments", :id=>'showComment^'+post.id.to_s, :class=>'show_comment_button' %><br>-->
+		<!--<%= button_tag "comments", :id=>'showComment^'+post.id.to_s, :class=>'show_comment_button' %><br>-->
 	</td>
 	<td>
+		<%if can? :comment, :All %>
 		<div id='comments<%=post.id%>'>
 			<% if post.comments.size>0 %>
 				<% post.comments.each do |comment| %>
@@ -54,15 +51,16 @@
 				<% end %>
 			<% end %>
 			<%if can? :new, Comment %>
-			<div id='send_comment<%=post.id%>' class=''>
+			<div id='send_comment-<%=post.id%>' class=''>
 				<div class='comment span6'>
-					<%= text_area_tag :body, params[:body], :rows=>1, :id=>'comment_input'+post.id.to_s,
+					<%= text_field_tag :body, params[:body], :rows=>1, :id=>'comment_input-'+post.id.to_s,
 					:class=>'field span4 comment_input'%>
-					<%= button_tag "comment", :id=>'comment_button'+post.id.to_s, :class=>'comment_button' %><br>
+					<%= button_tag "comment", :id=>'comment_button-'+post.id.to_s, :class=>'comment_button' %><br>
 				</div>				
 			</div>
 			<%end%>
 		</div>
+		<% end %>
 	</td>
 </tr>
 <% end %>

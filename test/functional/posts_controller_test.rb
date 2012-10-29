@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
 
   def login_admin
     @user = users(:one)
@@ -16,17 +17,6 @@ class PostsControllerTest < ActionController::TestCase
   	@topic=Topic.create(title: 'topic', part_id: 10, user_id: 1)
     @post = posts(:one)
     @post.topic_id=@topic.id
-  end
-
-  test "user should get new" do
-  	login_user
-    get :new
-    assert_response :success
-  end
-
-  test "anon should not get new" do
-    get :new
-    assert_redirected_to '/'
   end
 
   test "user should create post" do

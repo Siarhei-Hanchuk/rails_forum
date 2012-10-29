@@ -1,4 +1,9 @@
 <h1>New topic</h1>
-<% @ppp=params[:part]%>
-<%= render 'newpost/form' %>
+<%= form_tag('/topics/create') do%>
+	<%= text_field_tag :title, params[:title], :size => 400, :class=>'field span7' %><br>
+	<%= render '/topics/panel'%>
+	<%= text_area_tag :body, params[:body], :cols=>60, :rows=>10, :class=>'field span7', :id=>'new_topic_text'%><br>
+	<%= hidden_field :part, params[:part] %>
+	<%= submit_tag "new topic" %><br>
+<% end %>
 

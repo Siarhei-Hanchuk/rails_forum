@@ -13,8 +13,4 @@ class Post < ActiveRecord::Base
 		body.gsub! /\n/, '<br>'
 		write_attribute(:body,body)
 	end
-
-	#def body
-	#	read_attribute(:body)
-	#end
 end

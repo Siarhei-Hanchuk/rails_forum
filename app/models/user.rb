@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  :recoverable, :rememberable, :trackable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -21,14 +21,26 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :likes
 
+  def self.find_for_github_oauth access_token
+    if user = User.where(:url => access_token.info.urls.GitHub).first
+      user
+    else 
+      User.create!(:provider =>'github' , :url => access_token.info.urls.GitHub,
+        :username => access_token.info.nickname, :nickname => access_token.info.nickname,
+        :email => '', :password => Devise.friendly_token[0,20],
+        :ava=>access_token.extra.raw_info.avatar_url)
+    end
+  end
+
+
   def self.find_for_google_oauth access_token
     if user = User.where(:url => access_token[:link]).first
       user
     else 
-      User.create!(:provider => 'google_oauth2', :url => access_token[:link],
-        :username => access_token[:name], :nickname => access_token[:name],
-        :email => access_token[:email], :password => Devise.friendly_token[0,20],
-        :ava => access_token[:picture])
+      User.create!(:provider => 'google_oauth2', :url => access_token.extra.raw_info.link,
+        :username => access_token.extra.raw_info.name, :nickname => access_token.extra.raw_info.name,
+        :email => access_token.extra.raw_info.email, :password => Devise.friendly_token[0,20],
+        :ava => access_token.extra.raw_info.picture)
     end
   end
 
@@ -49,7 +61,7 @@ class User < ActiveRecord::Base
     else 
       User.create!(:provider => access_token.provider, :url => access_token.info.urls.Vkontakte,
         :username => access_token.info.name, :nickname => access_token.extra.raw_info.domain,
-        :email => access_token.extra.raw_info.domain+'@vk.com', :password => Devise.friendly_token[0,20],
+        :email => '', :password => Devise.friendly_token[0,20],
         :ava=>access_token.extra.raw_info.photo_big)
     end
   end

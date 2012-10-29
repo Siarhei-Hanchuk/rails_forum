@@ -27,10 +27,6 @@ class TopicsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.json
   def new
-    #if User.find(session[:user_id]).banned?
-    #  redirect_to '/', notice: 'You banned' 
-    #  return
-    #end
     @topic = Topic.new
     @topic.part_id=params[:part]
     respond_to do |format|
@@ -47,21 +43,24 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    if User.find(session[:user_id]).banned?
-      redirect_to '/', notice: 'You banned' 
+    @body=params[:body]
+    @title=params[:title]
+    @part_id=params[:part].keys[0]
+    if @body.length<1
+      redirect_to '/parts/'+@part_id.to_s, notice: 'Body is empty'
       return
     end
-    @topic = Topic.new(params[:topic])
-    @topic.user_id=session[:user_id];
-    respond_to do |format|
-      if @topic.save
-        format.html { redirect_to '/parts/'+@topic.part_id.to_s, notice: 'Topic was successfully created.' }
-        format.json { render json: @topic, status: :created, location: @topic }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
-      end
-    end
+    @topic=Topic.new
+    @topic.part_id=@part_id
+    @topic.user_id=session[:user_id]
+    @topic.title=@title
+    @topic.save
+    @post=Post.new
+    @post.topic_id=@topic.id
+    @post.user_id=session[:user_id]
+    @post.body=@body;
+    @post.save    
+    redirect_to '/topics/'+@topic.id.to_s, notice: 'Topic successfully created'
   end
 
   # PUT /topics/1

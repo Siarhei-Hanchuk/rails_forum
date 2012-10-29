@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PartsControllerTest < ActionController::TestCase
-  #include Devise::TestHelpers
+  include Devise::TestHelpers
 
   def login_admin
     @user = users(:one)

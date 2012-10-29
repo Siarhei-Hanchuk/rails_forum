@@ -7,12 +7,13 @@ class Ability
     can [:show], Topic
 
     if user.is? :user
+        can [:comment], :All
         can [:index], :Newpost
         can [:new, :create], Comment
         can [:show,:new,:create], Topic
         can [:new, :create], Post
         can [:edit, :update], Post, :user_id=>user.id
-        can [:show,:edit,:update], User, :id=>user.id
+        can [:show,:edit,:update, :sing_out], User, :id=>user.id
     end
 
     if user.is? :moder
@@ -23,52 +24,19 @@ class Ability
 
     if user.is? :admin
         can [:index], :Admin
-        can [:index, :ban, :destroy], User
+        can [:index, :change_role, :destroy], User
         can [:new, :destroy, :create, :edit, :update], Part
         can [:edit, :update], Post
         can [:show, :edit, :update], User
     end
 
     if user.is? :banned
+        cannot [:comment], :All
         cannot [:new, :create], Post
         cannot [:new, :create], Topic
         cannot [:new, :create], Post
     end
+    
+  end
 
-    #can :new, Topic if user.is? :user
-
-    #can :create, Topic
-    #can :index, SearchController if user.is? :admin
-
-    #can :edit, Part if user.is? :admin
-
-    #
-    #user = User.find(session[:user_id]) if session[:user_id]    
-    #can :part, :all if user.is? :admin
-    #can :part, :destroy if user.is? :admin
-    #can :post, :create, :new if user.is? :admin
-
-    # Define abilities for the passed in user here. For example:
-    #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
-    #
-    # The first argument to `can` is the action you are giving the user permission to do.
-    # If you pass :manage it will apply to every action. Other common actions here are
-    # :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on. If you pass
-    # :all it will apply to every resource. Otherwise pass a Ruby class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
-    # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
-end
 end

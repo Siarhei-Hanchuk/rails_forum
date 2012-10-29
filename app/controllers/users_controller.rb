@@ -97,7 +97,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def ban
+  def change_role
     user=User.find(params[:user_id])
     role=params[:role]
     if user.is? role
@@ -112,15 +112,10 @@ class UsersController < ApplicationController
       redirect_to '/users/', notice: 'Error ban'
     end
   end
-
-  def unban
-    user=User.find(params[:user_id])
-    user.role='banned'
-    if user.save
-      redirect_to '/users/', notice: 'User are unbanned'
-    else
-      redirect_to '/users/', notice: 'Error ban'
-    end
+  
+  def sing_out
+    session[:user_id] = nil
+    redirect_to parts_url, :notice => "Logged out"
   end
 
 end

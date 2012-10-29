@@ -11,25 +11,25 @@
 
 <table id='table'>
   <tr>
-    <th class='table_title'>Title</th>
+    <th class='title_column'>Title</th>
     <th>Last post</th>
     <th>Author</th>
     <th>Post count</th>
     <% if can? :destroy, Topic %>
-    <th>Actions</th>
+    <th class='action_column'>Actions</th>
     <%end%>
   </tr>
 
   <% @topics.each do |topic| %>
   <tr>
-    <td class='table_title'><%= link_to topic.title, topic %></td>
-    <td class='table_add'><%= show_user_login topic.posts.last.user if topic.posts.last %>,
+    <td><%= link_to topic.title, topic %></td>
+    <td class='info_column'><%= show_user_login topic.posts.last.user if topic.posts.last %>,
      at <%=to_date topic.posts.last.updated_at if topic.posts.last%></td>
-    <td class='table_add'><%= show_user_login topic.user %></td>
-    <td class='table_add'><%= topic.posts.count %></td>
+    <td class='info_column'><%= show_user_login topic.user %></td>
+    <td class='info_column'><%= topic.posts.count %></td>
     <% if can? :edit, Topic %>
-    <td class='table_add'>
-      <%= link_to 'Edit', edit_topic_path(topic), :class=>'btn btn-primary btn-mini'%>,
+    <td>
+      <%= link_to 'Edit', edit_topic_path(topic), :class=>'btn btn-primary btn-mini'%>
       <%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini'  %></td>
     <%end%>
   </tr>
