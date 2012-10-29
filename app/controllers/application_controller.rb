@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 		5
 	end
 
+	def current_user
+		User.find(session[:user_id])
+	end
+
 	private
 	def current_ability
 		if session[:user_id] && User.exists?(session[:user_id])
