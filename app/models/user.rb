@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
 
   def self.find_for_google_oauth access_token
-    if user = User.where(:url => access_token[:link]).first
+    if user = User.where(:url => access_token.extra.raw_info.link).first
       user
     else 
       User.create!(:provider => 'google_oauth2', :url => access_token.extra.raw_info.link,
