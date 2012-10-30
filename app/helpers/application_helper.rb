@@ -1,9 +1,5 @@
 module ApplicationHelper
 	
-	def post_per_page
-		5
-	end
-	
 	def to_date ar_datetime
 		ar_datetime.to_datetime.to_s.scan(/[\d-]+/)[0]
 	end

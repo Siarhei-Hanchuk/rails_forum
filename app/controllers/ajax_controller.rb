@@ -18,6 +18,7 @@ class AjaxController < ActionController::Base
 			Post.find(params[:post_id]).likes.push @like
 			@respond='+^+('+@post.likes.count.to_s+')'
 		end
+		render :ajax
 	end
 
 	def like_logins
@@ -25,9 +26,9 @@ class AjaxController < ActionController::Base
 		@post=Post.find(params[:post_id])
 		@post.likes.all.each { |q|
 			@respond+=(User.find(q.user_id).username+', ')
-		}
-		
+		}		
 		@respond[-2..-1]='  ' if @respond.size>3
+		render :ajax
 	end
 
 	def comment
@@ -37,5 +38,6 @@ class AjaxController < ActionController::Base
     	else
     		@respond=nil
     	end
+    	render :ajax
     end
 end

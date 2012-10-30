@@ -36,7 +36,6 @@ class Ability
         cannot [:new, :create], Topic
         cannot [:new, :create], Post
     end
-    
-  end
 
+  end
 end

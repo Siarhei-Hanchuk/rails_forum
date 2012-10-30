@@ -1,18 +1,6 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
-  
-  def login_admin
-    user = users(:one)
-    session[:user_id]=user.id
-  end
-
-  def login_user
-    user = users(:two)
-    session[:user_id]=user.id
-  end  
-
   setup do
     @user = users(:one)
   end

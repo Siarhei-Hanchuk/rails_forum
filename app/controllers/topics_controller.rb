@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
   # GET /topics/1.json
   def show
     @topic = Topic.find(params[:id])    
-    @posts=@topic.posts.page(params[:page]).per(5)
+    @posts=@topic.posts.page(params[:page]).per(post_per_page)
 
     respond_to do |format|
       format.html # show.html.erb

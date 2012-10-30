@@ -1,19 +1,19 @@
 <div id='login_form' class='user_form'>
-<% if !session[:user_id] %>
-Login 
-<%=link_to image_tag('/assets/google.png'), user_omniauth_authorize_path(:google_oauth2)%>
-<%=link_to image_tag('/assets/facebook.png'), user_omniauth_authorize_path(:facebook)%>
-<%=link_to image_tag('/assets/vkontakte.png'), user_omniauth_authorize_path(:vkontakte)%>
-<%=link_to image_tag('/assets/github.png'), user_omniauth_authorize_path(:github)%>
-<% else %>
-<% user=User.find(session[:user_id])%>
-<%=image_tag imgurl(user), :class=>'leftimg', :width=>100, :height=>100%>
-You are logged as <%= link_to user.username, '/users/'+user.id.to_s %>,
-<%= link_to 'Exit','/users/sing_out'%><br>
-You have <%= user.posts.count %> posts and <%= user.topics.count %> topics.<br>
-<%if current_user.is? :banned %>
-	<span id='banned'>Banned</span>
-<%end%>
-<br>
-<% end %>
+	<% if !session[:user_id] %>
+		Login 
+		<%=link_to image_tag('/assets/google.png'), user_omniauth_authorize_path(:google_oauth2)%>
+		<%=link_to image_tag('/assets/facebook.png'), user_omniauth_authorize_path(:facebook)%>
+		<%=link_to image_tag('/assets/vkontakte.png'), user_omniauth_authorize_path(:vkontakte)%>
+		<%=link_to image_tag('/assets/github.png'), user_omniauth_authorize_path(:github)%>
+	<% else %>
+		<% user=User.find(session[:user_id])%>
+		<%=image_tag imgurl(user), :class=>'leftimg', :width=>100, :height=>100%>
+		You are logged as <%= link_to user.username, '/users/'+user.id.to_s %>,
+		<%= link_to 'Exit','/users/sing_out'%><br>
+		You have <%= user.posts.count %> posts and <%= user.topics.count %> topics.<br>
+		<%if current_user.is? :banned %>
+			<span id='banned'>Banned</span>
+		<%end%>
+		<br>
+	<% end %>
 </div>

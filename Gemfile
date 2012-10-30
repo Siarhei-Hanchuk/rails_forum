@@ -2,10 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
-group :development do
-	gem 'sqlite3'
-end
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -18,14 +14,18 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
 group :production do
   gem 'mysql2'
 end
 
+group :development do
+	gem 'sqlite3'
+end
+
+gem 'jquery-rails'
+
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+# gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
@@ -57,6 +57,3 @@ gem 'omniauth-github'
 gem 'devise'
 gem 'cancan'
 gem 'rails_admin'
-
-
-gem "fog", "~> 1.3.1"
