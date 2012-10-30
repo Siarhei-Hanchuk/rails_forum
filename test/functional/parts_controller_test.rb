@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PartsControllerTest < ActionController::TestCase
   setup do
+    @request.env['HTTP_REFERER'] = 'http://test.host/'
     @part = parts(:one)
   end
 

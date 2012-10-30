@@ -2,6 +2,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   setup do
+    @request.env['HTTP_REFERER'] = 'http://test.host/'
     @user = users(:one)
   end
 

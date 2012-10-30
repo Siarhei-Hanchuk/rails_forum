@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
   setup do
+    @request.env['HTTP_REFERER'] = 'http://test.host/'
   	@topic=Topic.create(title: 'topic', part_id: 10, user_id: 1)
     @post = posts(:one)
     @post.topic_id=@topic.id
