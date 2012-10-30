@@ -1,4 +1,4 @@
-<%= link_to 'New Topic', new_topic_path+'?part='+@part.id.to_s %>
+<%= link_to 'New Topic', new_topic_path+'?part='+@part.id.to_s if can? :new, Topic%>
 <p>
   <b>Title:</b>
   <%= @part.title %>
