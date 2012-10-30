@@ -6,7 +6,7 @@
 
 <div class='desc'>
 	<b>Part:</b>
-	<%= link_to @topic.part.title, '/parts/'+@topic.part_id.to_s %>,
+	<%= link_to @topic.part.title, '/parts/'+@topic.part_id.to_s if @topic.part %>,
 	<b>Author:</b>
 	<%if @topic.user%>
 	<%= @topic.user.username %>

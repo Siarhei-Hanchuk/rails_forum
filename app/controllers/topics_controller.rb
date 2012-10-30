@@ -46,8 +46,9 @@ class TopicsController < ApplicationController
     @body=params[:body]
     @title=params[:title]
     @part_id=params[:part].keys[0]
-    if @body.length<1
-      redirect_to '/parts/'+@part_id.to_s, notice: 'Body is empty'
+    if @body.length<1 || @title.length<3
+      #render :new, :part=>@part_id
+      redirect_to '/topics/new?part='+params[:part].keys[0].to_s, notice: 'Body or Title is empty'
       return
     end
     @topic=Topic.new
