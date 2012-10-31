@@ -37,5 +37,5 @@ class Ability
         cannot [:new, :create], Post
     end
 
-  end
+end
 end

@@ -46,13 +46,13 @@ $(document).ready(function() {
 	$('.like').mouseenter(function(event){
 		post_id=getPostId(event);
 		$.get('/ajax/like_logins?post_id='+post_id,function(data){
-    		$('<div class="likes_list"></div>').css({
-    			position: 'absolute',
-    			left: event.pageX,
-    			top: event.pageY,
-    			cursor: 'pointer',
-    		}).html(data).appendTo('body');
-    	});		
+			$('<div class="likes_list"></div>').css({
+				position: 'absolute',
+				left: event.pageX,
+				top: event.pageY,
+				cursor: 'pointer',
+			}).html(data).appendTo('body');
+		});		
 	});
 
 	$('.like').mouseleave(function(event){

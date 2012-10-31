@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   end
 
   private
-    def create_role
-      self.roles = ["user"]
-    end  
+  def create_role
+    self.roles = ["user"]
+  end  
 end
