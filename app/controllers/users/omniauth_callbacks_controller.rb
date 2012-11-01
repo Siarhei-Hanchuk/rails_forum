@@ -17,12 +17,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	end
 
 	def common provider
-		begin
+		#begin
 			@user = User.__send__('find_for_'+provider+'_oauth', request.env["omniauth.auth"])
-		rescue ActiveRecord::RecordInvalid => error
-			redirect_to '/', notice: error.message
-			return 
-		end
+		#rescue ActiveRecord::RecordInvalid => error
+		#	redirect_to '/', notice: error.message
+		#	return 
+		#end
 		if @user.persisted?
 			flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => provider
 			sign_in_and_redirect @user, :event => :authentication

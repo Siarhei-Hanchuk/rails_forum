@@ -4,7 +4,6 @@ class PartsController < ApplicationController
   # GET /parts
   # GET /parts.json
   def index
-    #session[:user_id]=4
     @parts = Part.all.sort { |a,b|
       a.sort<=>b.sort
     }
@@ -20,13 +19,11 @@ class PartsController < ApplicationController
   def show
     @part = Part.find(params[:id])
     @topics=@part.topics
-
     @topics.sort! {|b,a|
       a.posts.last.updated_at <=> b.posts.last.updated_at
     }
 
     @topics=Kaminari.paginate_array(@topics).page(params[:page]).per(5)
-    #@topics=@part.topics.
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @part }

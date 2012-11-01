@@ -9,5 +9,13 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def login_admin
+    @user = users(:one)
+    session[:user_id]=@user.id
+  end
+
+  def login_user
+    @user = users(:two)
+    session[:user_id]=@user.id
+  end  
 end

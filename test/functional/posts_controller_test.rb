@@ -1,19 +1,8 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
-  include Devise::TestHelpers
-
-  def login_admin
-    @user = users(:one)
-    session[:user_id]=@user.id
-  end
-
-  def login_user
-    @user = users(:two)
-    session[:user_id]=@user.id
-  end  
-
   setup do
+    @request.env['HTTP_REFERER'] = 'http://test.host/'
   	@topic=Topic.create(title: 'topic', part_id: 10, user_id: 1)
     @post = posts(:one)
     @post.topic_id=@topic.id
