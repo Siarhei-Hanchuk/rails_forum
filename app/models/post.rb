@@ -3,7 +3,6 @@ class Post < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :topic
-	has_many :likes, :dependent => :destroy
 	has_many :comments, :dependent => :destroy
 
 	validates :body, :topic_id, :user_id, :presence => true
@@ -12,5 +11,9 @@ class Post < ActiveRecord::Base
 	def body=(body)
 		body.gsub! /\n/, '<br>'
 		write_attribute(:body,body)
+	end
+
+	def likes
+		@likes ||= Like.where(:post_id => self.id)
 	end
 end

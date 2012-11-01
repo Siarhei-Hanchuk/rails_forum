@@ -6,17 +6,25 @@ class AjaxController < ActionController::Base
 		end
 		@post_id=params[:post_id]
 		@post=Post.find(@post_id)
+		@likec=Likec.where(post_id: @post_id).first
+		if !@likec
+			@likec=Likec.new post_id: @post_id, count: 0
+			@likec.save
+		end
 		@b=false
-		@post.likes.all.each { |q|
-			@b=true if q.user_id==session[:user_id]
-		}
-		if @b
-			@post.likes.find_by_user_id(session[:user_id]).destroy
-			@respond='-^+('+@post.likes.count.to_s+')'
+		@ext_like=@post.likes.where(post_id: @post_id, user_id: session[:user_id]).first
+		if @ext_like
+			@ext_like.destroy
+			@likec.count-=1
+			@likec.save
+			@respond='-^+('+@likec.count.to_s+')'
 		else
 			@like=Like.new user_id: session[:user_id], post_id: params[:post_id]
+			@like.save
+			@likec.count+=1
+			@likec.save
 			Post.find(params[:post_id]).likes.push @like
-			@respond='+^+('+@post.likes.count.to_s+')'
+			@respond='+^+('+@likec.count.to_s+')'
 		end
 		render :ajax
 	end

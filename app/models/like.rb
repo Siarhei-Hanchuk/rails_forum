@@ -1,5 +1,6 @@
-class Like < ActiveRecord::Base
-	attr_accessible :user_id, :post_id
-	belongs_to :post
-	belongs_to :users
+class Like
+  include Mongoid::Document
+  field :user_id, :type => Integer
+  field :post_id, :type => Integer
 end
+
