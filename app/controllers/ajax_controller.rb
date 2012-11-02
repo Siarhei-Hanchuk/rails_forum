@@ -2,6 +2,7 @@ class AjaxController < ActionController::Base
 	def like
 		if !session[:user_id]
 			@respond='0^nil'
+			render :ajax
 			return
 		end
 		@post_id=params[:post_id]
