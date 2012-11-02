@@ -82,7 +82,7 @@ class UsersController < ApplicationController
   
   def sing_out
     session[:user_id] = nil
-    redirect_to parts_url, :notice => "Logged out"
+    redirect_to :back, :notice => "Logged out"
   end
 
 end
