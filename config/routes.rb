@@ -1,5 +1,7 @@
 Forum3::Application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   resources :posts
 
   resources :parts
@@ -21,7 +23,7 @@ Forum3::Application.routes.draw do
     post '/ajax/comment' => :comment
   end
 
-  #post '/user/change_password' => 'users#change_password'
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   #namespace :admin do
   #  get '', to: 'dashboard#index', as: '/'
@@ -83,13 +85,5 @@ Forum3::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-
-  Forum3::Application.routes.draw do
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-    resources :users, :only => [:index, :destroy]
-    root :to => 'users#index'
-  end
 
 end
