@@ -6,7 +6,6 @@ Forum3::Application.routes.draw do
 
   resources :parts
 
-  post '/topics/create'
   resources :topics
 
   get '/users/sing_out' => 'users#sing_out'
