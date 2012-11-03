@@ -1,5 +1,5 @@
 <h1>New topic</h1>
-<%= form_tag('/topics/create') do%>
+<%= form_tag('/topics/') do%>
 	<%= text_field_tag :title, params[:title], :size => 400, :class=>'field span7' %><br>
 	<%= render '/topics/panel'%>
 	<%= text_area_tag :body, params[:body], :cols=>60, :rows=>10, :class=>'field span7', :id=>'new_topic_text'%><br>

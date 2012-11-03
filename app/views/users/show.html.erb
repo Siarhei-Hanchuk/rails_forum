@@ -1,8 +1,9 @@
-Your profile, <%=@user.username%>:<br>
+Profile <%=link_to @user.username, @user.url%><br>
+
 Email:<%=@user.email%><br> 
 
 Have <%= @user.posts.count %> posts, <%= @user.topics.count %> topics and <%= @user.comments.count %> comments.<br>
-Registration date: <%= @user.created_at.to_datetime.to_s.scan(/[\d-]+/)[0] %>:<br>
+Firts sing in <%= to_date @user.created_at%><br>
 
 Avatar:<br>
 <%=image_tag imgurl(@user), :width=>100, :height=>100 %>
