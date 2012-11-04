@@ -41,6 +41,10 @@ class AjaxController < ActionController::Base
 	end
 
 	def comment
+		if !session[:user_id]
+			render :ajax
+			return
+		end
 		@comment=Comment.new user_id: session[:user_id], post_id: params[:post_id], body: params[:comment]
 		if @comment.save
 			@respond=@comment.user.username+': '+@comment.body
