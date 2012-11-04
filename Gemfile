@@ -11,21 +11,23 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
+  gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
 end
 
 group :production do
-	gem 'mysql2'
+  gem 'mysql2'
 end
 
 group :development do
-	gem 'sqlite3'
+  gem 'sqlite3'
+  gem 'rspec-rails'
 end
 
 group :test do
-	gem "rspec"
-	gem 'rspec-rails'
-	gem "spork"
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'spork'
 end
 
 gem 'jquery-rails'
@@ -49,6 +51,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'kaminari'
 gem 'mail'
+gem 'fog'
 
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
@@ -63,7 +66,6 @@ gem 'omniauth-github'
 gem 'devise'
 gem 'cancan'
 gem 'rails_admin'
-gem 'fog'
 
 gem 'mongoid'
 gem 'bson_ext'
