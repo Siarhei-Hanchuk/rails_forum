@@ -24,7 +24,7 @@ class AjaxController < ActionController::Base
 			@like.save
 			@likec.count+=1
 			@likec.save
-			Post.find(params[:post_id]).likes.push @like
+			Post.find(params[:post_id]).likes.push @like, nil
 			@respond='+^+('+@likec.count.to_s+')'
 		end
 		render :ajax
