@@ -11,9 +11,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.user_id=session[:user_id]
-    redir_path='/topics/'+@post.topic_id.to_s+'?page='+((@post.topic.posts.count)/post_per_page+1).to_s+'#'+@post.id.to_s
+    redir_path='/topics/'+@post.topic_id.to_s+'?page='+((@post.topic.posts.count)/post_per_page+1).to_s
     respond_to do |format|
       if @post.save
+        redir_path+='#'+@post.id.to_s
         format.html { redirect_to redir_path }
         format.json { render json: @post, status: :created, location: @post }
       else
