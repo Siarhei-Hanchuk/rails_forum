@@ -33,7 +33,7 @@
 			<%= link_to 'Edit', edit_post_path(post) %>,
 			<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
 			<% end %>
-			<div id='like_btn-<%=post.id%>' class="btn btn-success btn-small like <%='active' if liked? post %> "> +
+			<div id='like_btn-<%=post.id%>' class="btn btn-success btn-small like <%='active' if post.liked? session[:user_id]%> "> +
 				(<%= 
 				likec=Likec.where(post_id: post.id).first
 				if likec

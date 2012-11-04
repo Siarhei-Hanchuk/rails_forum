@@ -15,12 +15,4 @@ module ApplicationHelper
 		return user.username if user
 		'USER REMOVED'
 	end
-
-	def liked? post
-		@b=false
-		post.likes.all.each { |q|
-			@b=true if q.user_id==session[:user_id]
-		}
-		@b
-	end
 end

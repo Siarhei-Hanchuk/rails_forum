@@ -16,4 +16,12 @@ class Post < ActiveRecord::Base
 	def likes
 		@likes ||= Like.where(:post_id => self.id)
 	end
+
+	def liked? user_id
+		@b=false
+		self.likes.all.each { |q|
+			@b=true if q.user_id==user_id
+		}
+		@b
+	end
 end
