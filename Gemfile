@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '1.9.3'
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.14'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,7 +25,7 @@ end
 group :test do
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'spork'
+  gem 'spork', '1.0.0rc3'
 end
 
 group :test, :development do
