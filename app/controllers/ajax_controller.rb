@@ -5,7 +5,7 @@ class AjaxController < ActionController::Base
 			render :ajax
 			return
 		end
-		@post_id=params[:post_id]
+		@post_id = params[:post_id]
 		@post=Post.find(@post_id)
 		@likec=Likec.where(post_id: @post_id).first
 		if !@likec
@@ -35,7 +35,7 @@ class AjaxController < ActionController::Base
 		@post=Post.find(params[:post_id])
 		@post.likes.all.each { |q|
 			@respond+=(User.find(q.user_id).username+', ')
-		}		
+		}
 		@respond[-2..-1]='  ' if @respond.size>3
 		render :ajax
 	end
