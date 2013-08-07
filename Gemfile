@@ -56,3 +56,5 @@ gem 'rails_admin'
 
 gem 'mongoid'
 gem 'bson_ext'
+
+gem 'jenkins_github', github: 'bananateam/jenkins_github'

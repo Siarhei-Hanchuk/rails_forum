@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/bananateam/jenkins_github.git
+  revision: c4c60d33d70402fb1b2e8cea836d3fdd98b12776
+  specs:
+    jenkins_github (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -255,6 +261,7 @@ DEPENDENCIES
   devise
   fog
   haml-rails
+  jenkins_github!
   jquery-rails
   kaminari
   less-rails-bootstrap
