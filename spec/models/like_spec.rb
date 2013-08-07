@@ -4,7 +4,7 @@ describe Like do
 
 	it "should be valid" do
 		like=Like.new
-		like.should be_valid
+		@like.should be_valid
 	end
 
 end
