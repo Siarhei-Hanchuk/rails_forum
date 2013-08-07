@@ -42,6 +42,7 @@ gem 'kaminari'
 gem 'mail'
 gem 'fog'
 
+
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails-bootstrap'
